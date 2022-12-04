@@ -31,7 +31,6 @@ class _GraphScreenState extends State<GraphScreen> {
     DateFormat outputFormat = DateFormat('yyyy年 MM月');
     date = outputFormat.format(now);
     dateTime = now;
-    print(dateTime);
   }
 
   void changeDate(bool isAdvance) {
@@ -46,8 +45,6 @@ class _GraphScreenState extends State<GraphScreen> {
       final prevMonthLastDay = DateTime(dateTime.year, dateTime.month - 1);
       DateFormat outputFormat = DateFormat('yyyy年 MM月');
       date = outputFormat.format(prevMonthLastDay);
-
-      print(prevMonthLastDay);
     }
 
     setState(() {});
