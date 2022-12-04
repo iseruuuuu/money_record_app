@@ -15,6 +15,7 @@ dependencies:
   intl: ^0.17.0
   syncfusion_flutter_charts: ^20.3.59
   table_calendar: ^3.0.8
+  settings_ui: ^2.0.2
 
 dev_dependencies:
   flutter_test:
