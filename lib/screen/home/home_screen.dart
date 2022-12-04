@@ -44,86 +44,85 @@ class HomeScreen extends StatelessWidget {
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, bottom: 2),
-                  child: TextField(
-                    onChanged: (value) => controller.changeDiscountPrice(value),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    decoration: const InputDecoration(
-                      labelText: '値引きの金額',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                    ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40, bottom: 2),
+                child: TextField(
+                  onChanged: (value) => controller.changeDiscountPrice(value),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: const InputDecoration(
+                    labelText: '値引きの金額',
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: InputBorder.none,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: TextField(
-                    onChanged: (value) => controller.changeBuyPrice(value),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    decoration: const InputDecoration(
-                      labelText: '購入金額',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: TextField(
+                  onChanged: (value) => controller.changeBuyPrice(value),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: const InputDecoration(
+                    labelText: '購入金額',
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: InputBorder.none,
                   ),
                 ),
-                Padding(
+              ),
+              Obx(
+                () => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: ListTile(
                     tileColor: Colors.white,
                     leading: const Text('カテゴリー'),
-                    trailing: Text('飲食'),
+                    trailing: Text(controller.categoryName.value),
                     onTap: () => controller.changeCategory(),
                   ),
                 ),
-                Obx(
-                  () => Padding(
-                    padding: const EdgeInsets.only(bottom: 42),
-                    child: ListTile(
-                      tileColor: Colors.white,
-                      leading: const Text('日付'),
-                      trailing: Text(controller.createdDate.value),
-                      onTap: () => controller.changeDateTime(),
-                    ),
+              ),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.only(bottom: 42),
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: const Text('日付'),
+                    trailing: Text(controller.createdDate.value),
+                    onTap: () => controller.changeDateTime(),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 100,
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFF4A67AD),
-                      onPrimary: const Color(0xFF4A67AD),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      //TODO 保存する処理を記載する。
-                    },
-                    child: const Text(
-                      '保存',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 100,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF4A67AD),
+                    onPrimary: const Color(0xFF4A67AD),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
                       ),
                     ),
                   ),
+                  onPressed: () {
+                    //TODO 保存する処理を記載する。
+                  },
+                  child: const Text(
+                    '保存',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

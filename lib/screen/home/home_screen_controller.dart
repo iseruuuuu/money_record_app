@@ -7,6 +7,7 @@ class HomeScreenController extends GetxController {
   var isIncome = false.obs;
   var discountPrice = ''.obs;
   var buyPrice = ''.obs;
+  var categoryName = ''.obs;
   var createdDate = ''.obs;
 
   @override
@@ -14,6 +15,8 @@ class HomeScreenController extends GetxController {
     super.onInit();
     DateTime now = DateTime.now();
     createdDate.value = DateFormat('M月d日').format(now);
+
+    //TODO カテゴリー名前をリストの１番目にする
   }
 
   void changeIncome(bool isIncomes) {
@@ -28,8 +31,9 @@ class HomeScreenController extends GetxController {
     buyPrice.value = buyPrices;
   }
 
-  void changeCategory() {
-    Get.to(() => const CategoryScreen());
+  void changeCategory() async {
+    var result = await Get.to(() => const CategoryScreen());
+    categoryName.value = result.toString();
   }
 
   void changeDateTime() async {
