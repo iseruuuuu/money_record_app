@@ -51,6 +51,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 40, bottom: 2),
                   child: TextField(
+                    onChanged: (value) => controller.changeDiscountPrice(value),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
@@ -64,6 +65,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: TextField(
+                    onChanged: (value) => controller.changeBuyPrice(value),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
