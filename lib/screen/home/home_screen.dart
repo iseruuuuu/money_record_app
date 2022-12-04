@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: const InputDecoration(
-                      labelText: '割引前の金額',
+                      labelText: '値引きの金額',
                       filled: true,
                       fillColor: Colors.white,
                       border: InputBorder.none,
@@ -82,20 +82,18 @@ class HomeScreen extends StatelessWidget {
                     tileColor: Colors.white,
                     leading: const Text('カテゴリー'),
                     trailing: Text('飲食'),
-                    onTap: () {
-                      controller.changeCategory();
-                    },
+                    onTap: () => controller.changeCategory(),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 42),
-                  child: ListTile(
-                    tileColor: Colors.white,
-                    leading: const Text('日付'),
-                    trailing: Text('〇〇月〇〇日'),
-                    onTap: () {
-                      //TDOD 日付のダイアログを出す
-                    },
+                Obx(
+                  () => Padding(
+                    padding: const EdgeInsets.only(bottom: 42),
+                    child: ListTile(
+                      tileColor: Colors.white,
+                      leading: const Text('日付'),
+                      trailing: Text(controller.createdDate.value),
+                      onTap: () => controller.changeDateTime(),
+                    ),
                   ),
                 ),
                 SizedBox(
