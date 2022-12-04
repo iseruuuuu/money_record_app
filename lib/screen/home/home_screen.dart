@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFFCF8EA),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFDF8643),
+        backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width / 3.5,
               child: const ElevatedButtons(
-                backgroundColor: Color(0xFFD18448),
+                backgroundColor: Color(0xFF667DB5),
                 textColor: Colors.white,
                 title: '収入',
                 isTap: false,
@@ -105,8 +105,8 @@ class HomeScreen extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFDF8643),
-                      onPrimary: const Color(0xFFDF8643),
+                      primary: const Color(0xFF4A67AD),
+                      onPrimary: const Color(0xFF4A67AD),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
