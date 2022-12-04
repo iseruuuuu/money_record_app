@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                     leading: const Text('カテゴリー'),
                     trailing: Text('飲食'),
                     onTap: () {
-                      //TDOD カテゴリーのダイアログを出す。
+                      controller.changeCategory();
                     },
                   ),
                 ),

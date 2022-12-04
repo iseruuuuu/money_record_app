@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'children/category_screen.dart';
+
 class HomeScreenController extends GetxController {
   var isIncome = false.obs;
   var discountPrice = ''.obs;
@@ -15,5 +17,9 @@ class HomeScreenController extends GetxController {
 
   void changeBuyPrice(String buyPrices) {
     buyPrice.value = buyPrices;
+  }
+
+  void changeCategory() {
+    Get.to(() => const CategoryScreen());
   }
 }
