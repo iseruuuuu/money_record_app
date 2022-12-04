@@ -3,30 +3,28 @@ import 'package:flutter/material.dart';
 class ElevatedButtons extends StatelessWidget {
   const ElevatedButtons({
     Key? key,
-    required this.backgroundColor,
-    required this.textColor,
     required this.title,
     required this.isTap,
+    required this.onTap,
   }) : super(key: key);
 
-  final Color backgroundColor;
-  final Color textColor;
   final String title;
   final bool isTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: backgroundColor,
-        onPrimary: backgroundColor,
+        primary: isTap ? Colors.white : const Color(0xFF667DB5),
+        onPrimary: isTap ? Colors.white : const Color(0xFF667DB5),
         elevation: isTap ? 100 : 0,
       ),
-      onPressed: () {},
+      onPressed: onTap,
       child: Text(
         title,
         style: TextStyle(
-          color: textColor,
+          color: isTap ? const Color(0xFFD18448) : Colors.white,
         ),
       ),
     );
