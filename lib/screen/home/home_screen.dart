@@ -1,39 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:money_records_app/components/elevated_buttons.dart';
+import 'home_screen_controller.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFFCF8EA),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 3.5,
-              child: const ElevatedButtons(
-                backgroundColor: Colors.white,
-                textColor: Color(0xFFD18448),
-                title: '収支',
-                isTap: true,
+        title: Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 3.5,
+                child: ElevatedButtons(
+                  title: '収支',
+                  isTap: !controller.isIncome.value,
+                  onTap: () => controller.changeIncome(false),
+                ),
               ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 3.5,
-              child: const ElevatedButtons(
-                backgroundColor: Color(0xFF667DB5),
-                textColor: Colors.white,
-                title: '収入',
-                isTap: false,
+              const SizedBox(width: 5),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 3.5,
+                child: ElevatedButtons(
+                  title: '収入',
+                  isTap: controller.isIncome.value,
+                  onTap: () => controller.changeIncome(true),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: GestureDetector(
@@ -70,34 +74,26 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'カテゴリー',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: const Text('カテゴリー'),
+                    trailing: Text('飲食'),
+                    onTap: () {
+                      //TDOD カテゴリーのダイアログを出す。
+                    },
                   ),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'メモ',
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: InputBorder.none,
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 42, top: 2),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: '日付',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 42),
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: const Text('日付'),
+                    trailing: Text('〇〇月〇〇日'),
+                    onTap: () {
+                      //TDOD 日付のダイアログを出す
+                    },
                   ),
                 ),
                 SizedBox(
@@ -113,7 +109,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      //TODO 保存する処理を記載する。
+                    },
                     child: const Text(
                       '保存',
                       style: TextStyle(
