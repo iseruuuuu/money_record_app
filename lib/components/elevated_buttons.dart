@@ -16,8 +16,8 @@ class ElevatedButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: isTap ? Colors.white : const Color(0xFF667DB5),
-        onPrimary: isTap ? Colors.white : const Color(0xFF667DB5),
+        primary: isTap ? Colors.white : const Color(0xFF4261AD),
+        onPrimary: isTap ? Colors.white : const Color(0xFF4261AD),
         elevation: isTap ? 100 : 0,
       ),
       onPressed: onTap,
