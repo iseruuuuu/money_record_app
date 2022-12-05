@@ -15,28 +15,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
-        title: Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: ElevatedButtons(
-                  title: '収支',
-                  isTap: !controller.isIncome.value,
-                  onTap: () => controller.changeIncome(false),
-                ),
-              ),
-              const SizedBox(width: 5),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3.5,
-                child: ElevatedButtons(
-                  title: '収入',
-                  isTap: controller.isIncome.value,
-                  onTap: () => controller.changeIncome(true),
-                ),
-              ),
-            ],
+        title: const Text(
+          '収支記録',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -53,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: const InputDecoration(
-                    labelText: '値引きの金額',
+                    labelText: '節約できた値段',
                     filled: true,
                     fillColor: Colors.white,
                     border: InputBorder.none,
