@@ -50,13 +50,13 @@ class CategoryScreen extends StatelessWidget {
                           onTap: () => controller.onTapBack(index),
                           title: Row(
                             children: [
-                              GestureDetector(
-                                child: const Icon(
+                              IconButton(
+                                onPressed: () =>  controller.deleteCategory(index),
+                                icon: const Icon(
                                   Icons.delete,
                                   color: Colors.red,
                                 ),
                               ),
-                              const SizedBox(width: 10),
                               Text(categoryList.value[index]),
                             ],
                           ),

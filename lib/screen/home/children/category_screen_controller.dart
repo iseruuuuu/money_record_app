@@ -31,4 +31,9 @@ class CategoryScreenController extends GetxController {
   void onTapBack(int index) {
     Get.back(result: categoryList[index]);
   }
+
+  void deleteCategory(int index) async {
+    categoryList.remove(categoryList[index]);
+    await Preference().setListString(PreferenceKey.categoryList, categoryList);
+  }
 }
