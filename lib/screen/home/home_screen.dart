@@ -101,17 +101,16 @@ class HomeScreen extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 0,
                     primary: const Color(0xFF4A67AD),
-                    onPrimary: const Color(0xFF4A67AD),
+                    onPrimary: Colors.white,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    //TODO 保存する処理を記載する。
-                  },
+                  onPressed: () => controller.onTapStore(),
                   child: const Text(
                     '保存',
                     style: TextStyle(
