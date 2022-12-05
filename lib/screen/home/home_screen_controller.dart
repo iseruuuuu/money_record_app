@@ -40,7 +40,9 @@ class HomeScreenController extends GetxController {
 
   void changeCategory() async {
     var result = await Get.to(() => const CategoryScreen());
-    categoryName.value = result.toString();
+    if (result != null) {
+      categoryName.value = result.toString();
+    }
   }
 
   void changeDateTime() async {
