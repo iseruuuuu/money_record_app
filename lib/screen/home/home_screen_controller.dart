@@ -6,8 +6,8 @@ import 'children/category_screen.dart';
 
 class HomeScreenController extends GetxController {
   var isIncome = false.obs;
-  var discountPrice = ''.obs;
-  var buyPrice = ''.obs;
+  var discountPrice = 0.obs;
+  var buyPrice = 0.obs;
   var categoryName = ''.obs;
   var createdDate = ''.obs;
   RxList<String> categoryList = [''].obs;
@@ -31,11 +31,11 @@ class HomeScreenController extends GetxController {
   }
 
   void changeDiscountPrice(String discountPrices) {
-    discountPrice.value = discountPrices;
+    discountPrice.value = int.parse(discountPrices);
   }
 
   void changeBuyPrice(String buyPrices) {
-    buyPrice.value = buyPrices;
+    buyPrice.value = int.parse(buyPrices);
   }
 
   void changeCategory() async {
