@@ -1,20 +1,34 @@
 import 'package:get/get.dart';
 
+import '../../../preference/shared_preference.dart';
+
 class CategoryScreenController extends GetxController {
   //TODO リストを作る
 
+  RxList<String> categoryList = [''].obs;
   var categoryName = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadCategoryList();
+  }
+
+  void loadCategoryList() async {
+    categoryList.value =
+        await Preference().getListString(PreferenceKey.categoryList);
+  }
 
   void onChanged(String categoryNames) {
     categoryName.value = categoryNames;
   }
 
-  void addList() {
-    //TODO カテゴリー追加する
+  void addList() async {
+    categoryList.add(categoryName.value);
+    await Preference().setListString(PreferenceKey.categoryList, categoryList);
   }
 
   void onTapBack(int index) {
-    //TODO 選択したリストを渡してあげる
-    Get.back(result: '飲食店');
+    Get.back(result: categoryList[index]);
   }
 }

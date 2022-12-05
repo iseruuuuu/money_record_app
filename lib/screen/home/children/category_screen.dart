@@ -27,9 +27,10 @@ class CategoryScreen extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: 'Search Text',
                 hintStyle: const TextStyle(fontSize: 18),
-                suffixIcon: GestureDetector(
-                    onTap: controller.addList,
-                    child: const Icon(Icons.add, size: 25)),
+                suffixIcon: IconButton(
+                  onPressed: controller.addList,
+                  icon: const Icon(Icons.add, size: 25),
+                ),
                 contentPadding: const EdgeInsets.only(top: 14, left: 10),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
@@ -39,27 +40,32 @@ class CategoryScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: 20,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  onTap: () => controller.onTapBack(index),
-                  title: Row(
-                    children: [
-                      GestureDetector(
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text('食費'),
-                    ],
-                  ),
-                  trailing: const Icon(Icons.sort),
-                );
-              },
-            ),
+            child: controller.categoryList.isNotEmpty
+                ? Obx(
+                    () => ListView.builder(
+                      itemCount: controller.categoryList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final categoryList = controller.categoryList;
+                        return ListTile(
+                          onTap: () => controller.onTapBack(index),
+                          title: Row(
+                            children: [
+                              GestureDetector(
+                                child: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(categoryList.value[index]),
+                            ],
+                          ),
+                          trailing: const Icon(Icons.sort),
+                        );
+                      },
+                    ),
+                  )
+                : Container(),
           )
         ],
       ),

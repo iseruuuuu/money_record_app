@@ -17,6 +17,8 @@ dependencies:
   table_calendar: ^3.0.8
   settings_ui: ^2.0.2
   get: ^4.3.8
+  enum_to_string: ^2.0.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
