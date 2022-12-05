@@ -51,7 +51,8 @@ class CategoryScreen extends StatelessWidget {
                           title: Row(
                             children: [
                               IconButton(
-                                onPressed: () =>  controller.deleteCategory(index),
+                                onPressed: () =>
+                                    controller.deleteCategory(index),
                                 icon: const Icon(
                                   Icons.delete,
                                   color: Colors.red,
@@ -60,7 +61,6 @@ class CategoryScreen extends StatelessWidget {
                               Text(categoryList.value[index]),
                             ],
                           ),
-                          trailing: const Icon(Icons.sort),
                         );
                       },
                     ),
