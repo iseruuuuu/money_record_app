@@ -73,7 +73,7 @@ class GraphScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              color: Colors.white,
+              color: const Color(0xFFFCF8EA),
               child: StreamBuilder<List<Todo>>(
                 stream: bloc.todoStream,
                 builder:
@@ -100,8 +100,8 @@ class GraphScreen extends StatelessWidget {
                             decoration: const BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
-                                  width: 2,
-                                  color: Colors.black,
+                                  width: 1,
+                                  color: Colors.orange,
                                 ),
                               ),
                             ),
