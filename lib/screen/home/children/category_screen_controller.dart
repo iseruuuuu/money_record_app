@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-
-import '../../../preference/shared_preference.dart';
+import 'package:money_records_app/preference/shared_preference.dart';
 
 class CategoryScreenController extends GetxController {
   //TODO リストを作る
@@ -14,7 +13,7 @@ class CategoryScreenController extends GetxController {
     loadCategoryList();
   }
 
-  void loadCategoryList() async {
+  Future<void> loadCategoryList() async {
     categoryList.value =
         await Preference().getListString(PreferenceKey.categoryList);
   }
@@ -23,7 +22,7 @@ class CategoryScreenController extends GetxController {
     categoryName.value = categoryNames;
   }
 
-  void addList() async {
+  Future<void> addList() async {
     categoryList.add(categoryName.value);
     await Preference().setListString(PreferenceKey.categoryList, categoryList);
   }
@@ -32,7 +31,7 @@ class CategoryScreenController extends GetxController {
     Get.back(result: categoryList[index]);
   }
 
-  void deleteCategory(int index) async {
+  Future<void> deleteCategory(int index) async {
     categoryList.remove(categoryList[index]);
     await Preference().setListString(PreferenceKey.categoryList, categoryList);
   }
