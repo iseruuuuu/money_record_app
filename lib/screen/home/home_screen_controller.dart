@@ -67,12 +67,31 @@ class HomeScreenController extends GetxController {
   }
 
   void onTapStore() {
-    final newMoney = Todo(
-      buyPrice: buyPrice.value,
-      discountPrice: discountPrice.value,
-      category: categoryName.value,
-      createdDate: createdDates,
+    //TODO あとで戻す
+    // final newMoney = Todo(
+    //   buyPrice: buyPrice.value,
+    //   discountPrice: discountPrice.value,
+    //   category: categoryName.value,
+    //   createdDate: createdDates,
+    // );
+    // TodoBloc().create(newMoney);
+    openDialog();
+    //TODO 状態変化できるようにする
+  }
+
+  void openDialog() {
+    Get.dialog(
+      AlertDialog(
+        title: const Center(child: Text('追加完了')),
+        actions: [
+          Center(
+            child: TextButton(
+              child: const Text("閉じる"),
+              onPressed: () => Get.back(),
+            ),
+          ),
+        ],
+      ),
     );
-    TodoBloc().create(newMoney);
   }
 }
