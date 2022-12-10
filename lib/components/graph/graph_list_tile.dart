@@ -23,14 +23,14 @@ class GraphListTile extends StatelessWidget {
           leading,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
         trailing: Text(
           '$trailing円',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
       ),
