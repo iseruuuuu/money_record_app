@@ -12,7 +12,7 @@ class GraphListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(width: 2, color: Color(0xFF4A67AD)),
