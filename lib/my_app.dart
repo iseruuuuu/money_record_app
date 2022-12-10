@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:money_records_app/screen/tab/tab_screen.dart';
 import 'package:get/get.dart';
+import 'package:money_records_app/database/db_bloc.dart';
+import 'package:money_records_app/screen/tab/tab_screen.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,7 +18,11 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const TabScreen(),
+      home: Provider<TodoBloc>(
+        create: (context) => TodoBloc(),
+        dispose: (context, bloc) => bloc.dispose(),
+        child: const TabScreen(),
+      ),
     );
   }
 }
