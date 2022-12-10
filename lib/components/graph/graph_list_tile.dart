@@ -15,7 +15,7 @@ class GraphListTile extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 2, color: Color(0xFF4A67AD)),
+          bottom: BorderSide(width: 3, color: Color(0xFF4A67AD)),
         ),
       ),
       child: ListTile(
