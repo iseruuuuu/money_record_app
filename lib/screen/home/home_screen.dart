@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:money_records_app/components/elevated_buttons.dart';
-import 'home_screen_controller.dart';
 import 'package:get/get.dart';
+import 'package:money_records_app/screen/home/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../preference/shared_preference.dart';
-import 'children/category_screen.dart';
+import 'package:money_records_app/database/db_bloc.dart';
+import 'package:money_records_app/model/money.dart';
+import 'package:money_records_app/preference/shared_preference.dart';
+import 'package:money_records_app/screen/home/children/category_screen.dart';
 
 class HomeScreenController extends GetxController {
-  var isIncome = false.obs;
-  var discountPrice = 0.obs;
-  var buyPrice = 0.obs;
-  var categoryName = ''.obs;
-  var createdDate = ''.obs;
+  RxBool isIncome = false.obs;
+  RxInt discountPrice = 0.obs;
+  RxInt buyPrice = 0.obs;
+  RxString categoryName = ''.obs;
+  RxString createdDate = ''.obs;
+  late DateTime createdDates;
   RxList<String> categoryList = [''].obs;
 
   @override
   void onInit() {
     super.onInit();
-    DateTime now = DateTime.now();
+    final now = DateTime.now();
     createdDate.value = DateFormat('yyyy年M月d日').format(now);
+    createdDates = now;
     loadCategory();
   }
 
-  void loadCategory() async {
+  Future<void> loadCategory() async {
     categoryList.value =
         await Preference().getListString(PreferenceKey.categoryList);
-    categoryName.value = categoryList[0];
+    if (categoryList.isNotEmpty) {
+      categoryName.value = categoryList[0];
+    } else {
+      categoryName.value = 'カテゴリー選択';
+    }
   }
 
   void changeIncome(bool isIncomes) {
@@ -38,24 +46,33 @@ class HomeScreenController extends GetxController {
     buyPrice.value = int.parse(buyPrices);
   }
 
-  void changeCategory() async {
+  Future<void> changeCategory() async {
     var result = await Get.to(() => const CategoryScreen());
     if (result != null) {
       categoryName.value = result.toString();
     }
   }
 
-  void changeDateTime() async {
-    DateTime date = DateTime.now();
-    final DateTime? picked = await showDatePicker(
+  Future<void> changeDateTime() async {
+    final date = DateTime.now();
+    final picked = await showDatePicker(
         context: Get.context!,
         initialDate: date,
         firstDate: DateTime(2016),
         lastDate: DateTime.now().add(const Duration(days: 360)));
     if (picked != null) {
       createdDate.value = DateFormat('yyyy年M月d日').format(picked);
+      createdDates = picked;
     }
   }
 
-  void onTapStore() {}
+  void onTapStore() {
+    final newMoney = Todo(
+      buyPrice: buyPrice.value,
+      discountPrice: discountPrice.value,
+      category: categoryName.value,
+      createdDate: createdDates,
+    );
+    TodoBloc().create(newMoney);
+  }
 }
