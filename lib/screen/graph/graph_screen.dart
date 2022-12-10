@@ -1,58 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:money_records_app/components/graph/graph_list_tile.dart';
+import 'package:money_records_app/database/db_bloc.dart';
+import 'package:money_records_app/model/chart_data.dart';
+import 'package:money_records_app/model/money.dart';
+import 'package:money_records_app/screen/detail/detail_screen.dart';
+import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../model/chart_data.dart';
-
-class GraphScreen extends StatefulWidget {
+class GraphScreen extends StatelessWidget {
   const GraphScreen({Key? key}) : super(key: key);
 
   @override
-  State<GraphScreen> createState() => _GraphScreenState();
-}
-
-class _GraphScreenState extends State<GraphScreen> {
-  String date = '';
-  DateTime now = DateTime.now();
-  DateTime dateTime = DateTime.now();
-
-  //TODO 金額のデータをあとで入れる
-  final List<ChartData> chartData = [
-    ChartData('David', 25, Colors.red),
-    ChartData('Steve', 38, Colors.grey),
-    ChartData('Jack', 34, Colors.yellowAccent),
-    ChartData('Others', 52, Colors.black87),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    DateFormat outputFormat = DateFormat('yyyy年 MM月');
-    date = outputFormat.format(now);
-    dateTime = now;
-  }
-
-  void changeDate(bool isAdvance) {
-    //TODO あとで日付を変える(未完成)
-    if (isAdvance) {
-      final prevMonthLastDay = DateTime(dateTime.year, dateTime.month + 1);
-      DateFormat outputFormat = DateFormat('yyyy年 MM月');
-      date = outputFormat.format(prevMonthLastDay);
-
-      print(prevMonthLastDay);
-    } else {
-      final prevMonthLastDay = DateTime(dateTime.year, dateTime.month - 1);
-      DateFormat outputFormat = DateFormat('yyyy年 MM月');
-      date = outputFormat.format(prevMonthLastDay);
-    }
-
-    setState(() {});
-    //TODO データを変える
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(GraphScreenController());
+    final bloc = Provider.of<TodoBloc>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -62,15 +25,17 @@ class _GraphScreenState extends State<GraphScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () => changeDate(false),
+              onPressed: () => controller.changeDate(isAdvance: false),
               icon: const Icon(Icons.arrow_back_ios),
             ),
-            Text(
-              date,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            Obx(
+              () => Text(
+                controller.date.value,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             IconButton(
-              onPressed: () => changeDate(true),
+              onPressed: () => controller.changeDate(isAdvance: true),
               icon: const Icon(Icons.arrow_forward_ios),
             ),
           ],
@@ -80,31 +45,99 @@ class _GraphScreenState extends State<GraphScreen> {
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 300,
-            child: SfCircularChart(
-              series: <CircularSeries>[
-                PieSeries<ChartData, String>(
-                  dataLabelSettings: const DataLabelSettings(isVisible: true),
-                  dataSource: chartData,
-                  xValueMapper: (ChartData data, _) => data.x,
-                  yValueMapper: (ChartData data, _) => data.y,
-                )
-              ],
+            height: 200,
+            child: Obx(
+              () => SfCircularChart(
+                series: <CircularSeries>[
+                  PieSeries<ChartData, String>(
+                    dataLabelSettings: const DataLabelSettings(isVisible: true),
+                    dataSource: controller.chartData.value,
+                    xValueMapper: (ChartData data, _) => data.x,
+                    yValueMapper: (ChartData data, _) => data.y,
+                  )
+                ],
+              ),
             ),
           ),
-          const GraphListTile(
-            leading: '合計',
-            trailing: '10000000',
+          Obx(
+            () => GraphListTile(
+              leading: '合計',
+              trailing: controller.amountBuyPrice.value.toString(),
+            ),
+          ),
+          Obx(
+            () => GraphListTile(
+              leading: '節約できた金額',
+              trailing: controller.amountSavePrice.value.toString(),
+            ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: 20,
-              itemBuilder: (BuildContext context, int index) {
-                return const GraphListTile(
-                  leading: '本',
-                  trailing: '1000',
-                );
-              },
+            child: Container(
+              color: Colors.white,
+              child: StreamBuilder<List<Todo>>(
+                stream: bloc.todoStream,
+                builder:
+                    (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Todo todo = snapshot.data![index];
+                        return Dismissible(
+                          key: Key(todo.id!),
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            color: Colors.red,
+                            child: const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              child: Icon(Icons.delete, color: Colors.white),
+                            ),
+                          ),
+                          onDismissed: (direction) {
+                            bloc.delete(todo.id!);
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 2,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailScreen(
+                                      todo: todo,
+                                    ),
+                                  ),
+                                );
+                              },
+                              title: Row(
+                                children: [
+                                  //TODO アイコンをランダムで載せる
+                                  Text(todo.category),
+                                ],
+                              ),
+                              trailing: Text(
+                                "${todo.buyPrice}円",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
             ),
           ),
         ],
