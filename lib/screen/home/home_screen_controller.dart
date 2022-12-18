@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
-import 'package:money_records_app/preference/shared_preference.dart';
-import 'package:money_records_app/screen/home/children/category_screen.dart';
 
 class HomeScreenController extends GetxController {
   RxBool isIncome = false.obs;
@@ -21,17 +19,6 @@ class HomeScreenController extends GetxController {
     final now = DateTime.now();
     createdDate.value = DateFormat('yyyy年M月d日').format(now);
     createdDates = now;
-    loadCategory();
-  }
-
-  Future<void> loadCategory() async {
-    categoryList.value =
-        await Preference().getListString(PreferenceKey.categoryList);
-    if (categoryList.isNotEmpty) {
-      categoryName.value = categoryList[0];
-    } else {
-      categoryName.value = 'カテゴリー選択';
-    }
   }
 
   void changeIncome(bool isIncomes) {
@@ -46,11 +33,8 @@ class HomeScreenController extends GetxController {
     buyPrice.value = int.parse(buyPrices);
   }
 
-  Future<void> changeCategory() async {
-    var result = await Get.to(() => const CategoryScreen());
-    if (result != null) {
-      categoryName.value = result.toString();
-    }
+  void changeCategoryName(String categoryNames) {
+    categoryName.value = categoryNames;
   }
 
   Future<void> changeDateTime() async {
@@ -67,18 +51,17 @@ class HomeScreenController extends GetxController {
   }
 
   void onTapStore() {
-    //TODO あとで戻す
-    // final newMoney = Todo(
-    //   buyPrice: buyPrice.value,
-    //   discountPrice: discountPrice.value,
-    //   category: categoryName.value,
-    //   createdDate: createdDates,
-    // );
-    // TodoBloc().create(newMoney);
+    final newMoney = Todo(
+      buyPrice: buyPrice.value,
+      discountPrice: discountPrice.value,
+      categoryName: categoryName.value,
+      createdDate: createdDates,
+    );
+    TodoBloc().create(newMoney);
     openDialog();
-    //TODO 状態変化できるようにする
   }
 
+  //TODO ダイアログのデザインを修正する
   void openDialog() {
     Get.dialog(
       AlertDialog(

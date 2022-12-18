@@ -56,15 +56,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(
-                () => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 2),
-                  child: ListTile(
-                    tileColor: Colors.white,
-                    leading: const Text('カテゴリー'),
-                    trailing: Text(controller.categoryName.value),
-                    onTap: () => controller.changeCategory(),
-                  ),
+              TextField(
+                onChanged: (value) => controller.changeCategoryName(value),
+                decoration: const InputDecoration(
+                  labelText: '種類（名前）',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: InputBorder.none,
                 ),
               ),
               Obx(
@@ -84,6 +82,7 @@ class HomeScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
+                    //TODO waringを直す
                     primary: const Color(0xFF4A67AD),
                     onPrimary: Colors.white,
                     shape: const RoundedRectangleBorder(
