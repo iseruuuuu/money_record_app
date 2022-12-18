@@ -25,7 +25,8 @@ class GraphScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () => controller.changeDate(isAdvance: false),
+              onPressed: () =>
+                  controller.changeDate(isAdvance: false, month: -1),
               icon: const Icon(Icons.arrow_back_ios),
             ),
             Obx(
@@ -35,7 +36,7 @@ class GraphScreen extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () => controller.changeDate(isAdvance: true),
+              onPressed: () => controller.changeDate(isAdvance: true, month: 1),
               icon: const Icon(Icons.arrow_forward_ios),
             ),
           ],
