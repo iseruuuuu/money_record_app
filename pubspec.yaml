@@ -28,7 +28,24 @@ dependencies:
 dev_dependencies:
   blendthink_lints: ^3.0.0
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.11.0
+  flutter_app_name: ^0.1.0
   flutter_test:
     sdk: flutter
+
+flutter_app_name:
+  name: "家計簿(節約)"
+
+flutter_icons:
+  android: false
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: '#FFF422'
+  adaptive_icon_foreground: "assets/images/icon.png"
+
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
