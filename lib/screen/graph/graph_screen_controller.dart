@@ -34,15 +34,15 @@ class GraphScreenController extends GetxController {
     amountDiscountPriceList.value = [];
     amountCategoryList.value = [];
     amountCreatedTimeList.value = [];
-    //TODO その月のデータを取得するようにする。
-
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
-        amountIdList.add(value[i].id!);
-        amountBuyList.add(value[i].buyPrice);
-        amountDiscountPriceList.add(value[i].discountPrice);
-        amountCategoryList.add(value[i].categoryName);
-        amountCreatedTimeList.add(value[i].createdDate);
+        if (value[i].createdDate.month == DateTime.now().month) {
+          amountIdList.add(value[i].id!);
+          amountBuyList.add(value[i].buyPrice);
+          amountDiscountPriceList.add(value[i].discountPrice);
+          amountCategoryList.add(value[i].categoryName);
+          amountCreatedTimeList.add(value[i].createdDate);
+        }
       }
     });
   }
@@ -60,8 +60,6 @@ class GraphScreenController extends GetxController {
     //TODO データを変える
     //TODO 一ヶ月前のデータを取得する
     //TODO 一ヶ月後のデータを取得する
-
-
 
     //TOBE 課金要素に、二ヶ月前以前と二ヶ月後以降の値を取得できるようにする。
   }
