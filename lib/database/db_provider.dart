@@ -33,7 +33,7 @@ class DBProvider {
       "id TEXT PRIMARY KEY,"
       "buyPrice INTEGER,"
       "discountPrice INTEGER,"
-      "category TEXT,"
+      "categoryName TEXT,"
       "createdDate TEXT"
       ")",
     );

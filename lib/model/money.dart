@@ -4,14 +4,14 @@ class Todo {
   String? id;
   int buyPrice;
   int discountPrice;
-  String category;
+  String categoryName;
   DateTime createdDate;
 
   Todo({
     this.id,
     required this.buyPrice,
     required this.discountPrice,
-    required this.category,
+    required this.categoryName,
     required this.createdDate,
   });
 
@@ -23,7 +23,7 @@ class Todo {
         id: json["id"],
         buyPrice: json["buyPrice"],
         discountPrice: json["discountPrice"],
-        category: json["category"],
+        categoryName: json["categoryName"],
         createdDate: DateTime.parse(json["createdDate"]).toLocal(),
       );
 
@@ -31,7 +31,7 @@ class Todo {
         "id": id,
         "buyPrice": buyPrice,
         "discountPrice": discountPrice,
-        "category": category,
+        "categoryName": categoryName,
         "createdDate": createdDate.toUtc().toIso8601String(),
       };
 }
