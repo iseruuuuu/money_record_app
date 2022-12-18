@@ -49,7 +49,6 @@ class GraphScreenController extends GetxController {
   }
 
   void changeDate({required bool isAdvance, required int month}) {
-    //TODO if文からSwitch文に変えてあげる
     monthCount.value += month;
     if (monthCount > 2) {
       monthCount.value = 2;
@@ -57,27 +56,30 @@ class GraphScreenController extends GetxController {
     if (monthCount < 0) {
       monthCount.value = 0;
     }
-    if (monthCount.value == 0) {
-      final prevMonthLastDay = DateTime(now.year, now.month - 1);
-      final outputFormat = DateFormat('yyyy年 MM月');
-      date.value = outputFormat.format(prevMonthLastDay);
-      reloadList(now.month - 1);
-    } else if (monthCount.value == 1) {
-      final prevMonthLastDay = DateTime(now.year, now.month);
-      final outputFormat = DateFormat('yyyy年 MM月');
-      date.value = outputFormat.format(prevMonthLastDay);
-      reloadList(now.month);
-    } else if (monthCount.value == 2) {
-      final prevMonthLastDay = DateTime(now.year, now.month + 1);
-      final outputFormat = DateFormat('yyyy年 MM月');
-      date.value = outputFormat.format(prevMonthLastDay);
-      reloadList(now.month + 1);
+    switch (monthCount.value) {
+      case 0:
+        setDate(now.month - 1);
+        break;
+      case 1:
+        setDate(now.month);
+        break;
+      case 2:
+        setDate(now.month + 1);
+        break;
     }
     //TOBE 課金要素に、二ヶ月前以前と二ヶ月後以降の値を取得できるようにする。
   }
 
+  void setDate(int month) {
+    final prevMonthLastDay = DateTime(now.year, month);
+    final outputFormat = DateFormat('yyyy年 MM月');
+    date.value = outputFormat.format(prevMonthLastDay);
+    reloadList(month);
+  }
+
   void reloadList(int month) {
     //TODO　リストだけが更新ができていない。
+    //TODO リストの配列エラーが起きている（それぞれの月で追加してみた結果）
     amountIdList.value = [];
     amountBuyList.value = [];
     amountDiscountPriceList.value = [];
