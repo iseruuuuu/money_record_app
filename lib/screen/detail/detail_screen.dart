@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:money_records_app/model/money.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
     Key? key,
-    required this.todo,
+    required this.id,
+    required this.discountPrice,
+    required this.buyPrice,
+    required this.category,
+    required this.createdDate,
   }) : super(key: key);
 
-  final Todo todo;
+  final String id;
+  final int discountPrice;
+  final int buyPrice;
+  final String category;
+  final DateTime createdDate;
 
+  //TODO デザインを修正する
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,19 +28,19 @@ class DetailScreen extends StatelessWidget {
         children: [
           ListTile(
             title: const Text('節約できた金額'),
-            trailing: Text('${todo.discountPrice}円'),
+            trailing: Text('$discountPrice円'),
           ),
           ListTile(
             title: const Text('支払った金額'),
-            trailing: Text('${todo.discountPrice}円'),
+            trailing: Text('$buyPrice円'),
           ),
           ListTile(
             title: const Text('種類'),
-            trailing: Text(todo.category),
+            trailing: Text(category),
           ),
           ListTile(
             title: const Text('日付'),
-            trailing: Text(todo.createdDate.toString()),
+            trailing: Text(createdDate.toString()),
           ),
         ],
       ),
