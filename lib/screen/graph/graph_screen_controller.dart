@@ -10,14 +10,41 @@ class GraphScreenController extends GetxController {
   RxInt amountBuyPrice = 0.obs;
   RxInt amountSavePrice = 0.obs;
   RxList<ChartData> chartData = <ChartData>[].obs;
+  RxList<String> amountIdList = [''].obs;
+  RxList<int> amountBuyList = [0].obs;
+  RxList<int> amountDiscountPriceList = [0].obs;
+  RxList<String> amountCategoryList = [''].obs;
+  RxList<DateTime> amountCreatedTimeList = [DateTime.now()].obs;
+  RxInt listLength = 0.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
+  void loadInit() {
     final outputFormat = DateFormat('yyyy年 MM月');
     date.value = outputFormat.format(now);
-    getDate();
-    getMoney();
+    loadChartDate();
+    loadAmountMoneys();
+    loadList();
+    DBProvider.db.getAllTodo().then((value) {
+      listLength.value = value.length;
+    });
+  }
+
+  void loadList() {
+    amountIdList.value = [];
+    amountBuyList.value = [];
+    amountDiscountPriceList.value = [];
+    amountCategoryList.value = [];
+    amountCreatedTimeList.value = [];
+    //TODO その月のデータを取得するようにする。
+
+    DBProvider.db.getAllTodo().then((value) {
+      for (var i = 0; i < value.length; i++) {
+        amountIdList.add(value[i].id!);
+        amountBuyList.add(value[i].buyPrice);
+        amountDiscountPriceList.add(value[i].discountPrice);
+        amountCategoryList.add(value[i].categoryName);
+        amountCreatedTimeList.add(value[i].createdDate);
+      }
+    });
   }
 
   void changeDate({required bool isAdvance}) {
@@ -30,11 +57,18 @@ class GraphScreenController extends GetxController {
       final outputFormat = DateFormat('yyyy年 MM月');
       date.value = outputFormat.format(prevMonthLastDay);
     }
-
     //TODO データを変える
+    //TODO 一ヶ月前のデータを取得する
+    //TODO 一ヶ月後のデータを取得する
+
+
+
+    //TOBE 課金要素に、二ヶ月前以前と二ヶ月後以降の値を取得できるようにする。
   }
 
-  void getMoney() {
+  void loadAmountMoneys() {
+    amountSavePrice.value = 0;
+    amountBuyPrice.value = 0;
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
         amountBuyPrice += value[i].buyPrice;
@@ -43,12 +77,12 @@ class GraphScreenController extends GetxController {
     });
   }
 
-  void getDate() {
-    //TODO 同じカテゴリーをまとめて表示する。
+  void loadChartDate() {
+    chartData.value = [];
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
         final newData = ChartData(
-          value[i].category,
+          value[i].categoryName,
           value[i].buyPrice.toDouble(),
           Colors.yellowAccent,
         );

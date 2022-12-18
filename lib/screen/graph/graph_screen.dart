@@ -74,17 +74,17 @@ class GraphScreen extends StatelessWidget {
           Expanded(
             child: Container(
               color: const Color(0xFFFCF8EA),
+              //TODO 現在、StreamBuilderを使っていないため、取り除くor入れる
               child: StreamBuilder<List<Todo>>(
                 stream: bloc.todoStream,
                 builder:
                     (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: controller.listLength.value,
                       itemBuilder: (BuildContext context, int index) {
-                        Todo todo = snapshot.data![index];
                         return Dismissible(
-                          key: Key(todo.id!),
+                          key: Key(controller.amountIdList[index]),
                           background: Container(
                             alignment: Alignment.centerRight,
                             color: Colors.red,
@@ -94,7 +94,8 @@ class GraphScreen extends StatelessWidget {
                             ),
                           ),
                           onDismissed: (direction) {
-                            bloc.delete(todo.id!);
+                            bloc.delete(controller.amountIdList[index]);
+                            controller.loadInit();
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -111,22 +112,34 @@ class GraphScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => DetailScreen(
-                                      todo: todo,
+                                      id: controller.amountIdList[index],
+                                      discountPrice: controller
+                                          .amountDiscountPriceList[index],
+                                      buyPrice: controller.amountBuyList[index],
+                                      category:
+                                          controller.amountCategoryList[index],
+                                      createdDate: controller
+                                          .amountCreatedTimeList[index],
                                     ),
                                   ),
                                 );
                               },
                               title: Row(
                                 children: [
-                                  //TODO アイコンをランダムで載せる
-                                  Text(todo.category),
+                                  Text(
+                                    controller.amountCategoryList[index],
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ],
                               ),
                               trailing: Text(
-                                "${todo.buyPrice}円",
+                                "${controller.amountBuyList[index]}円",
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.normal,
                                   fontSize: 18,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
