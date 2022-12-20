@@ -21,12 +21,8 @@ class GraphScreenController extends GetxController {
   void loadInit() {
     final outputFormat = DateFormat('yyyy年 MM月');
     date.value = outputFormat.format(now);
-    loadChartDate();
     loadAmountMoneys();
     loadList();
-    DBProvider.db.getAllTodo().then((value) {
-      listLength.value = value.length;
-    });
   }
 
   void loadList() {
@@ -35,6 +31,7 @@ class GraphScreenController extends GetxController {
     amountDiscountPriceList.value = [];
     amountCategoryList.value = [];
     amountCreatedTimeList.value = [];
+    monthCount.value = DateTime.now().month;
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
         if (value[i].createdDate.month == DateTime.now().month) {
@@ -43,29 +40,41 @@ class GraphScreenController extends GetxController {
           amountDiscountPriceList.add(value[i].discountPrice);
           amountCategoryList.add(value[i].categoryName);
           amountCreatedTimeList.add(value[i].createdDate);
+          listLength.value = amountCreatedTimeList.length;
+          final newData = ChartData(
+            value[i].categoryName,
+            value[i].buyPrice.toDouble(),
+            Colors.yellowAccent,
+          );
+          chartData.add(newData);
         }
       }
     });
   }
 
   void changeDate({required bool isAdvance, required int month}) {
-    monthCount.value += month;
-    if (monthCount > 2) {
-      monthCount.value = 2;
+    //TODO 整理したい。
+    if (isAdvance) {
+      monthCount.value++;
+    } else {
+      monthCount.value--;
     }
-    if (monthCount < 0) {
-      monthCount.value = 0;
+    if (monthCount.value == now.month) {
+      monthCount.value == now.month;
+      setDate(now.month);
+    } else if (monthCount.value == now.month + 1) {
+      monthCount.value == now.month + 1;
+    } else if (monthCount.value == now.month - 1) {
+      monthCount.value == now.month - 1;
+      setDate(now.month - 1);
     }
-    switch (monthCount.value) {
-      case 0:
-        setDate(now.month - 1);
-        break;
-      case 1:
-        setDate(now.month);
-        break;
-      case 2:
-        setDate(now.month + 1);
-        break;
+    if (monthCount.value == 0) {
+      setDate(12);
+      monthCount.value = 12;
+    }
+    if (monthCount.value == 13) {
+      setDate(1);
+      monthCount.value = 1;
     }
     //TOBE 課金要素に、二ヶ月前以前と二ヶ月後以降の値を取得できるようにする。
   }
@@ -78,8 +87,6 @@ class GraphScreenController extends GetxController {
   }
 
   void reloadList(int month) {
-    //TODO　リストだけが更新ができていない。
-    //TODO リストの配列エラーが起きている（それぞれの月で追加してみた結果）
     amountIdList.value = [];
     amountBuyList.value = [];
     amountDiscountPriceList.value = [];
@@ -92,7 +99,6 @@ class GraphScreenController extends GetxController {
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
         if (value[i].createdDate.month == month) {
-          listLength.value = value.length;
           amountIdList.add(value[i].id!);
           amountBuyList.add(value[i].buyPrice);
           amountDiscountPriceList.add(value[i].discountPrice);
@@ -106,6 +112,7 @@ class GraphScreenController extends GetxController {
             Colors.yellowAccent,
           );
           chartData.add(newData);
+          listLength.value++;
         }
       }
     });
@@ -118,20 +125,6 @@ class GraphScreenController extends GetxController {
       for (var i = 0; i < value.length; i++) {
         amountBuyPrice += value[i].buyPrice;
         amountSavePrice += value[i].discountPrice;
-      }
-    });
-  }
-
-  void loadChartDate() {
-    chartData.value = [];
-    DBProvider.db.getAllTodo().then((value) {
-      for (var i = 0; i < value.length; i++) {
-        final newData = ChartData(
-          value[i].categoryName,
-          value[i].buyPrice.toDouble(),
-          Colors.yellowAccent,
-        );
-        chartData.add(newData);
       }
     });
   }
