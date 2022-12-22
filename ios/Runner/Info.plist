@@ -17,7 +17,12 @@
 	<key>CFBundleName</key>
 	<string>家計簿(節約)</string>
 	<key>CFBundlePackageType</key>
-	<string>家計簿(節約)</string>
+	<string>APPL</string>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>sms</string>
+      <string>tel</string>
+    </array>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
