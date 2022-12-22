@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_records_app/screen/coming_soon.dart';
 import 'package:money_records_app/screen/graph/graph_screen.dart';
 import 'package:money_records_app/screen/home/home_screen.dart';
+import 'package:money_records_app/screen/setting/setting_screen.dart';
 import 'package:money_records_app/screen/tab/tab_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class TabScreen extends StatelessWidget {
           const HomeScreen(),
           const GraphScreen(),
           const ComingSoon(),
-          const ComingSoon(),
+          const SettingScreen(),
         ][controller.selectedIndex.value],
         bottomNavigationBar: DecoratedBox(
           decoration: const BoxDecoration(
