@@ -68,6 +68,7 @@ class GraphScreenController extends GetxController {
       setDate(now.month);
     } else if (monthCount.value == now.month + 1) {
       monthCount.value == now.month + 1;
+      setDate(now.month + 1);
     } else if (monthCount.value == now.month - 1) {
       monthCount.value == now.month - 1;
       setDate(now.month - 1);
