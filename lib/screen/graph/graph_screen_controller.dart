@@ -31,6 +31,10 @@ class GraphScreenController extends GetxController {
     amountDiscountPriceList.value = [];
     amountCategoryList.value = [];
     amountCreatedTimeList.value = [];
+    amountSavePrice.value = 0;
+    amountBuyPrice.value = 0;
+    chartData.value = [];
+    listLength.value = 0;
     monthCount.value = DateTime.now().month;
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
