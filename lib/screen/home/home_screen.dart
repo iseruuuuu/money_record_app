@@ -60,6 +60,11 @@ class HomeScreen extends StatelessWidget {
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: '節約できた値段',
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                   border: InputBorder.none,
@@ -74,6 +79,11 @@ class HomeScreen extends StatelessWidget {
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: '購入金額',
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
                   border: InputBorder.none,
@@ -84,6 +94,11 @@ class HomeScreen extends StatelessWidget {
               onChanged: (value) => controller.changeCategoryName(value),
               decoration: const InputDecoration(
                 labelText: '種類（名前）',
+                labelStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
                 filled: true,
                 fillColor: Colors.white,
                 border: InputBorder.none,
@@ -94,8 +109,22 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 42),
                 child: ListTile(
                   tileColor: Colors.white,
-                  leading: const Text('日付'),
-                  trailing: Text(controller.createdDate.value),
+                  leading: const Text(
+                    '日付',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  trailing: Text(
+                    controller.createdDate.value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
+                  ),
                   onTap: () => controller.changeDateTime(),
                 ),
               ),
