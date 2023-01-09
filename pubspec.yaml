@@ -32,6 +32,7 @@ dependencies:
   google_mobile_ads: ^1.0.0
   app_tracking_transparency: ^2.0.3
   flutter_easyloading: ^3.0.5
+  panara_dialogs: ^0.1.4
 
 dev_dependencies:
   blendthink_lints: ^3.0.0
