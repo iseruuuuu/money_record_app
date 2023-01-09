@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -16,9 +17,17 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    loadAppTracking();
     final now = DateTime.now();
     createdDate.value = DateFormat('yyyy年M月d日').format(now);
     createdDates = now;
+  }
+
+  void loadAppTracking() async {
+    if (await AppTrackingTransparency.trackingAuthorizationStatus ==
+        TrackingStatus.notDetermined) {
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
   }
 
   void changeIncome(bool isIncomes) {
