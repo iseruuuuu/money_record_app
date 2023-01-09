@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:money_records_app/screen/setting/children/license_screen.dart';
@@ -20,9 +21,11 @@ class SettingScreenController extends GetxController {
   }
 
   void onTapReview() async {
-    //TODO アプリないレビューをできるか確認する
+    EasyLoading.show(status: 'loading....');
+    await Future.delayed(const Duration(seconds: 2));
     final InAppReview inAppReview = InAppReview.instance;
     if (await inAppReview.isAvailable()) {
+      EasyLoading.dismiss();
       inAppReview.requestReview();
     }
   }
@@ -37,14 +40,12 @@ class SettingScreenController extends GetxController {
   Future<void> onTapTwitter() async {
     const url = 'twitter://user?screen_name=isekiryu';
     const secondUrl = 'https://twitter.com/isekiryu';
-
     if (await canLaunch(url)) {
       await launch(url);
     } else if (await canLaunch(secondUrl)) {
-      // 最初のURLが開けなかった場合かつセカンドURLが有って開けた場合
       await launch(secondUrl);
     } else {
-      // 任意のエラー処理
+      //TODO errorのダイアログをつける
     }
   }
 
@@ -60,7 +61,6 @@ class SettingScreenController extends GetxController {
   }
 
   void onTapShare() {
-    //TODO あとでAppleStoreのリンクを設定する。
     Share.share('シェアをするよ');
   }
 }
