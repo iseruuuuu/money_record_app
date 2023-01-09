@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
@@ -19,6 +22,30 @@ class DetailScreen extends StatelessWidget {
   //TODO デザインを修正する
   @override
   Widget build(BuildContext context) {
+    final BannerAd myBanner = BannerAd(
+      adUnitId: Platform.isAndroid
+          //android
+          ? 'ca-app-pub-3940256099942544/6300978111'
+          //ios
+          : 'ca-app-pub-3471170179614589/7242925577',
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          ad.dispose();
+        },
+      ),
+    );
+
+    myBanner.load();
+    final AdWidget adWidget = AdWidget(ad: myBanner);
+    final Container adContainer = Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      height: myBanner.size.height.toDouble(),
+      child: adWidget,
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
@@ -40,8 +67,12 @@ class DetailScreen extends StatelessWidget {
           ),
           ListTile(
             title: const Text('日付'),
-            trailing: Text(createdDate.toString()),
+            trailing: Text(
+                "${createdDate.year}/${createdDate.month}/${createdDate.day}"),
           ),
+          const Spacer(),
+          adContainer,
+          const SizedBox(height: 15),
         ],
       ),
     );
