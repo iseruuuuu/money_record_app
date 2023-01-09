@@ -11,9 +11,32 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BannerAd myBanner = BannerAd(
+      adUnitId: Platform.isAndroid
+          //android
+          ? 'ca-app-pub-3940256099942544/6300978111'
+          //ios
+          : 'ca-app-pub-3471170179614589/7242925577',
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          ad.dispose();
+        },
+      ),
+    );
+
+    myBanner.load();
+    final AdWidget adWidget = AdWidget(ad: myBanner);
+    final Container adContainer = Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      height: myBanner.size.height.toDouble(),
+      child: adWidget,
+    );
     final controller = Get.put(SettingScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFFCF8EA),
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
@@ -38,7 +61,7 @@ class SettingScreen extends StatelessWidget {
                         color: Colors.yellow,
                       ),
                       title: const Text('レビューを書く'),
-                      onPressed: (context) => controller.onTapReview,
+                      onPressed: (context) => controller.onTapReview(),
                     ),
                     SettingsTile.navigation(
                       leading: const Icon(
@@ -91,6 +114,7 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
           ),
+          adContainer,
         ],
       ),
     );
