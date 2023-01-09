@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleShortVersionString</key>
-	<string>1.01</string>
+	<string>1.02</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -23,9 +23,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-3471170179614589~1951438008</string>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>取得したトラッキングデータをお客様に合わせたご提案等のサービスの改善や広告配信、広告効果測定を目的として分析・使用させていただきます。</string>
+	<string>ca-app-pub-3471170179614589~1951438008</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>取得したトラッキングデータをお客様に合わせたご提案等のサービスの改善や広告配信、広告効果測定を目的として分析・使用させていただきます。</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sms</string>
