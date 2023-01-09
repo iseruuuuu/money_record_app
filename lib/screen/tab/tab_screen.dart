@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_records_app/screen/coming_soon.dart';
 import 'package:money_records_app/screen/graph/graph_screen.dart';
 import 'package:money_records_app/screen/home/home_screen.dart';
 import 'package:money_records_app/screen/setting/setting_screen.dart';
@@ -14,10 +13,11 @@ class TabScreen extends StatelessWidget {
     final controller = Get.put(TabScreenController());
     return Obx(
       () => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: [
           const HomeScreen(),
           const GraphScreen(),
-          const ComingSoon(),
+          // const CalendarScreen(),
           const SettingScreen(),
         ][controller.selectedIndex.value],
         bottomNavigationBar: DecoratedBox(
@@ -38,11 +38,12 @@ class TabScreen extends StatelessWidget {
             currentIndex: controller.selectedIndex.value,
             onTap: (index) => controller.onTap(index),
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: '入力'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.maps_ugc_outlined), label: '入力'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.auto_graph), label: 'グラフ'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.calendar_month), label: 'カレンダー'),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.calendar_month), label: 'カレンダー'),
               BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定'),
             ],
             type: BottomNavigationBarType.fixed,
