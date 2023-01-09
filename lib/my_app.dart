@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/screen/tab/tab_screen.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       home: Provider<TodoBloc>(
         create: (context) => TodoBloc(),
         dispose: (context, bloc) => bloc.dispose(),
+        builder: EasyLoading.init(),
         child: const TabScreen(),
       ),
     );
