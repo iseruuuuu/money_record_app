@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
+import 'package:money_records_app/preference/shared_preference.dart';
+import 'package:money_records_app/screen/home/children/category_screen/category_screen.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
 class HomeScreenController extends GetxController {
@@ -14,6 +16,7 @@ class HomeScreenController extends GetxController {
   RxString createdDate = ''.obs;
   late DateTime createdDates;
   RxList<String> categoryList = [''].obs;
+  RxInt colorCode = 0.obs;
 
   @override
   void onInit() {
@@ -43,8 +46,13 @@ class HomeScreenController extends GetxController {
     buyPrice.value = int.parse(buyPrices);
   }
 
-  void changeCategoryName(String categoryNames) {
-    categoryName.value = categoryNames;
+  void changeCategory() async {
+    var result = await Get.to(() => const CategoryScreen());
+    if (result != null) {
+      categoryName.value = result.toString();
+      var color = await Preference().getString(categoryName.value);
+      colorCode.value = int.parse(color);
+    }
   }
 
   Future<void> changeDateTime() async {
@@ -70,6 +78,7 @@ class HomeScreenController extends GetxController {
         discountPrice: discountPrice.value,
         categoryName: categoryName.value,
         createdDate: createdDates,
+        colorCode: colorCode.value,
       );
       TodoBloc().create(newMoney);
       openDialog(isError: false);
