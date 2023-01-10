@@ -48,7 +48,7 @@ class GraphScreenController extends GetxController {
           final newData = ChartData(
             value[i].categoryName,
             value[i].buyPrice.toDouble(),
-            Colors.yellowAccent,
+            Color(value[i].colorCode),
           );
           chartData.add(newData);
         }
