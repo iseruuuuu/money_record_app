@@ -90,18 +90,31 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            TextField(
-              onChanged: (value) => controller.changeCategoryName(value),
-              decoration: const InputDecoration(
-                labelText: '種類（名前）',
-                labelStyle: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
+            Obx(
+              () => ListTile(
+                tileColor: Colors.white,
+                title: Container(
+                  width: 30,
+                  height: 30,
+                  color: Color(controller.colorCode.value),
                 ),
-                filled: true,
-                fillColor: Colors.white,
-                border: InputBorder.none,
+                leading: const Text(
+                  'カテゴリー',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+                trailing: Text(
+                  controller.categoryName.value,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 18,
+                  ),
+                ),
+                onTap: () => controller.changeCategory(),
               ),
             ),
             Obx(
