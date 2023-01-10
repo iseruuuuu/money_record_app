@@ -6,6 +6,7 @@ class Todo {
   int discountPrice;
   String categoryName;
   DateTime createdDate;
+  int colorCode;
 
   Todo({
     this.id,
@@ -13,6 +14,7 @@ class Todo {
     required this.discountPrice,
     required this.categoryName,
     required this.createdDate,
+    required this.colorCode,
   });
 
   assignUUID() {
@@ -25,6 +27,7 @@ class Todo {
         discountPrice: json["discountPrice"],
         categoryName: json["categoryName"],
         createdDate: DateTime.parse(json["createdDate"]).toLocal(),
+        colorCode: json["colorCode"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -33,5 +36,6 @@ class Todo {
         "discountPrice": discountPrice,
         "categoryName": categoryName,
         "createdDate": createdDate.toUtc().toIso8601String(),
+        "colorCode": colorCode,
       };
 }

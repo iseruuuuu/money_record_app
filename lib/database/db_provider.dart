@@ -34,7 +34,8 @@ class DBProvider {
       "buyPrice INTEGER,"
       "discountPrice INTEGER,"
       "categoryName TEXT,"
-      "createdDate TEXT"
+      "createdDate TEXT,"
+      "colorCode INTEGER"
       ")",
     );
   }
