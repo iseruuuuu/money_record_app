@@ -84,6 +84,7 @@ class GraphScreen extends StatelessWidget {
                           dataLabelSettings:
                               const DataLabelSettings(isVisible: true),
                           dataSource: controller.chartData.value,
+                          pointColorMapper: (ChartData data, _) => data.color,
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y,
                         )
