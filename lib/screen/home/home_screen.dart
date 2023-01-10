@@ -93,11 +93,6 @@ class HomeScreen extends StatelessWidget {
             Obx(
               () => ListTile(
                 tileColor: Colors.white,
-                title: Container(
-                  width: 30,
-                  height: 30,
-                  color: Color(controller.colorCode.value),
-                ),
                 leading: const Text(
                   'カテゴリー',
                   style: TextStyle(
