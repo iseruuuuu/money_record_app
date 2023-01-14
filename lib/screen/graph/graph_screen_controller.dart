@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';
+import 'package:money_records_app/model/money.dart';
 
 class GraphScreenController extends GetxController {
   DateTime now = DateTime.now();
@@ -17,6 +18,7 @@ class GraphScreenController extends GetxController {
   RxList<DateTime> amountCreatedTimeList = [DateTime.now()].obs;
   RxInt listLength = 0.obs;
   RxInt monthCount = 1.obs;
+  RxList<int> amountColorCodeList = [0].obs;
 
   void loadInit() {
     final outputFormat = DateFormat('yyyy年 MM月');
@@ -26,6 +28,35 @@ class GraphScreenController extends GetxController {
   }
 
   void loadList() {
+    resetList();
+    monthCount.value = DateTime.now().month;
+    DBProvider.db.getAllTodo().then((value) {
+      for (var i = 0; i < value.length; i++) {
+        if (value[i].createdDate.month == DateTime.now().month) {
+          addList(value, i);
+        }
+      }
+    });
+  }
+
+  void addList(List<Todo> value, int i) {
+    amountIdList.add(value[i].id!);
+    amountBuyList.add(value[i].buyPrice);
+    amountDiscountPriceList.add(value[i].discountPrice);
+    amountCategoryList.add(value[i].categoryName);
+    amountCreatedTimeList.add(value[i].createdDate);
+    amountColorCodeList.add(value[i].colorCode);
+    listLength.value = amountCreatedTimeList.length;
+    final newData = ChartData(
+      value[i].categoryName,
+      value[i].buyPrice.toDouble(),
+      Color(value[i].colorCode),
+    );
+    chartData.add(newData);
+    chartData.sort((a, b) => a.x.compareTo(b.x));
+  }
+
+  void resetList() {
     amountIdList.value = [];
     amountBuyList.value = [];
     amountDiscountPriceList.value = [];
@@ -35,29 +66,10 @@ class GraphScreenController extends GetxController {
     amountBuyPrice.value = 0;
     chartData.value = [];
     listLength.value = 0;
-    monthCount.value = DateTime.now().month;
-    DBProvider.db.getAllTodo().then((value) {
-      for (var i = 0; i < value.length; i++) {
-        if (value[i].createdDate.month == DateTime.now().month) {
-          amountIdList.add(value[i].id!);
-          amountBuyList.add(value[i].buyPrice);
-          amountDiscountPriceList.add(value[i].discountPrice);
-          amountCategoryList.add(value[i].categoryName);
-          amountCreatedTimeList.add(value[i].createdDate);
-          listLength.value = amountCreatedTimeList.length;
-          final newData = ChartData(
-            value[i].categoryName,
-            value[i].buyPrice.toDouble(),
-            Color(value[i].colorCode),
-          );
-          chartData.add(newData);
-        }
-      }
-    });
+    amountColorCodeList.value = [];
   }
 
   void changeDate({required bool isAdvance, required int month}) {
-    //TODO 整理したい。
     if (isAdvance) {
       monthCount.value++;
     } else {
@@ -92,32 +104,11 @@ class GraphScreenController extends GetxController {
   }
 
   void reloadList(int month) {
-    amountIdList.value = [];
-    amountBuyList.value = [];
-    amountDiscountPriceList.value = [];
-    amountCategoryList.value = [];
-    amountCreatedTimeList.value = [];
-    amountSavePrice.value = 0;
-    amountBuyPrice.value = 0;
-    chartData.value = [];
-    listLength.value = 0;
+    resetList();
     DBProvider.db.getAllTodo().then((value) {
       for (var i = 0; i < value.length; i++) {
         if (value[i].createdDate.month == month) {
-          amountIdList.add(value[i].id!);
-          amountBuyList.add(value[i].buyPrice);
-          amountDiscountPriceList.add(value[i].discountPrice);
-          amountCategoryList.add(value[i].categoryName);
-          amountCreatedTimeList.add(value[i].createdDate);
-          amountBuyPrice += value[i].buyPrice;
-          amountSavePrice += value[i].discountPrice;
-          final newData = ChartData(
-            value[i].categoryName,
-            value[i].buyPrice.toDouble(),
-            Colors.yellowAccent,
-          );
-          chartData.add(newData);
-          listLength.value++;
+          addList(value, i);
         }
       }
     });
