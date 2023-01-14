@@ -25,7 +25,7 @@ class CategoryScreen extends StatelessWidget {
             margin: const EdgeInsets.only(top: 10, right: 5, left: 5),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 3),
+              border: Border.all(width: 3),
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextField(
@@ -41,7 +41,7 @@ class CategoryScreen extends StatelessWidget {
                 focusedBorder: InputBorder.none,
                 isDense: true,
               ),
-              onChanged: (value) => controller.onChanged(value),
+              onChanged: controller.onChanged,
             ),
           ),
           Expanded(
@@ -63,7 +63,7 @@ class CategoryScreen extends StatelessWidget {
                                   color: Colors.red,
                                 ),
                               ),
-                              Text(categoryList.value[index]),
+                              Text(categoryList[index]),
                             ],
                           ),
                         );

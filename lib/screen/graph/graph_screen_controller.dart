@@ -57,8 +57,8 @@ class GraphScreenController extends GetxController {
       value[i].buyPrice.toDouble(),
       Color(value[i].colorCode),
     );
-    chartData.add(newData);
-    chartData.sort((a, b) => a.x.compareTo(b.x));
+    chartData..add(newData)
+    ..sort((a, b) => a.x.compareTo(b.x));
   }
 
   void resetList() {

@@ -32,14 +32,14 @@ class HomeScreenController extends GetxController {
     createdDates = now;
   }
 
-  void loadAppTracking() async {
+  Future<void> loadAppTracking() async {
     if (await AppTrackingTransparency.trackingAuthorizationStatus ==
         TrackingStatus.notDetermined) {
       await AppTrackingTransparency.requestTrackingAuthorization();
     }
   }
 
-  void changeIncome(bool isIncomes) {
+  void changeIncome({required bool isIncomes}) {
     isIncome.value = isIncomes;
   }
 
@@ -51,11 +51,11 @@ class HomeScreenController extends GetxController {
     buyPrice.value = int.parse(buyPrices);
   }
 
-  void changeCategory() async {
-    var result = await Get.to(() => const CategoryScreen());
+  Future<void> changeCategory() async {
+    final result = await Get.to(() => const CategoryScreen());
     if (result != null) {
       categoryName.value = result.toString();
-      var color = await Preference().getString(categoryName.value);
+      final color = await Preference().getString(categoryName.value);
       colorCode.value = int.parse(color);
     }
   }
@@ -95,19 +95,17 @@ class HomeScreenController extends GetxController {
   void openDialog({required bool isError}) {
     PanaraInfoDialog.show(
       Get.context!,
-      title: isError ? "Error" : "Success",
+      title: isError ? 'Error' : 'Success',
       message: isError
-          ? "One of them is empty.\n"
-              "Please check and Try again."
-          : "You can post contents.\n"
-              "please check it.",
-      buttonText: "OK",
+          ? 'One of them is empty.\n'
+              'Please check and Try again.'
+          : 'You can post contents.\n'
+              'please check it.',
+      buttonText: 'OK',
       panaraDialogType:
           isError ? PanaraDialogType.error : PanaraDialogType.success,
       barrierDismissible: false,
-      onTapDismiss: () {
-        Get.back();
-      },
+      onTapDismiss: Get.back,
     );
   }
 }

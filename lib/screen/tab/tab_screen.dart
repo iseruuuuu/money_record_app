@@ -41,7 +41,7 @@ class TabScreen extends StatelessWidget {
             unselectedItemColor: Colors.black,
             iconSize: 30,
             currentIndex: controller.selectedIndex.value,
-            onTap: (index) => controller.onTap(index),
+            onTap: controller.onTap,
             items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.maps_ugc_outlined), label: '入力'),

@@ -19,23 +19,23 @@ class SettingScreenController extends GetxController {
     loadVersion();
   }
 
-  void loadVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  Future<void> loadVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
     version.value = packageInfo.version;
   }
 
-  void onTapReview() async {
-    EasyLoading.show(status: 'loading....');
+  Future<void> onTapReview() async {
+    await EasyLoading.show(status: 'loading....');
     await Future.delayed(const Duration(seconds: 2));
-    final InAppReview inAppReview = InAppReview.instance;
+    final inAppReview = InAppReview.instance;
     if (await inAppReview.isAvailable()) {
-      EasyLoading.dismiss();
-      inAppReview.requestReview();
+      await EasyLoading.dismiss();
+      await inAppReview.requestReview();
     }
   }
 
   Future<void> onTapMail() async {
-    final Uri url = Uri.parse('https://forms.gle/rfnKQfemq4rwrjYr5');
+    final url = Uri.parse('https://forms.gle/rfnKQfemq4rwrjYr5');
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
@@ -56,15 +56,13 @@ class SettingScreenController extends GetxController {
   void openErrorDialog() {
     PanaraInfoDialog.show(
       Get.context!,
-      title: "Error",
+      title: 'Error',
       message: "You can't open twitter link.\n"
-          "Try again.",
-      buttonText: "OK",
+          'Try again.',
+      buttonText: 'OK',
       panaraDialogType: PanaraDialogType.error,
       barrierDismissible: false,
-      onTapDismiss: () {
-        Get.back();
-      },
+      onTapDismiss: Get.back,
     );
   }
 

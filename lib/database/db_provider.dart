@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:io';
-
 // Package imports:
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,17 +12,16 @@ class DBProvider {
   static final DBProvider db = DBProvider._();
 
   static late Database _database;
-  static const _tableName = "Todo";
+  static const _tableName = 'Todo';
 
   Future<Database> get database async {
-    _database = await initDB();
-    return _database;
+    return _database = await initDB();
   }
 
   Future<Database> initDB() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "TodoDB.db");
-    return await openDatabase(
+    final documentsDirectory = await getApplicationDocumentsDirectory();
+    final path = join(documentsDirectory.path, 'TodoDB.db');
+    return openDatabase(
       path,
       version: 1,
       onCreate: _createTable,
@@ -33,27 +29,27 @@ class DBProvider {
   }
 
   Future<void> _createTable(Database db, int version) async {
-    return await db.execute(
-      "CREATE TABLE $_tableName ("
-      "id TEXT PRIMARY KEY,"
-      "buyPrice INTEGER,"
-      "discountPrice INTEGER,"
-      "categoryName TEXT,"
-      "createdDate TEXT,"
-      "colorCode INTEGER"
-      ")",
+    return db.execute(
+      'CREATE TABLE $_tableName ('
+      'id TEXT PRIMARY KEY,'
+      'buyPrice INTEGER,'
+      'discountPrice INTEGER,'
+      'categoryName TEXT,'
+      'createdDate TEXT,'
+      'colorCode INTEGER'
+      ')',
     );
   }
 
-  createTodo(Todo todo) async {
+  Future<int> createTodo(Todo todo) async {
     final db = await database;
-    var res = await db.insert(_tableName, todo.toMap());
+    final res = await db.insert(_tableName, todo.toMap());
     return res;
   }
 
-  getAllTodos() async {
+  Future<List<Todo>> getAllTodos() async {
     final db = await database;
-    var todo = await db.query(
+    final todo = await db.query(
       _tableName,
       orderBy: 'id DESC',
     );
@@ -69,20 +65,20 @@ class DBProvider {
       orderBy: 'id DESC',
     );
     List<Todo> list =
-    todo.isNotEmpty ? todo.map((c) => Todo.fromMap(c)).toList() : [];
+        todo.isNotEmpty ? todo.map((c) => Todo.fromMap(c)).toList() : [];
     return list;
   }
 
-  updateTodo(Todo todo) async {
+  Future<int> updateTodo(Todo todo) async {
     final db = await database;
-    var res = await db.update(_tableName, todo.toMap(),
-        where: "id = ?", whereArgs: [todo.id]);
+    final res = await db.update(_tableName, todo.toMap(),
+        where: 'id = ?', whereArgs: [todo.id]);
     return res;
   }
 
-  deleteTodo(String id) async {
+  Future<int> deleteTodo(String id) async {
     final db = await database;
-    var res = db.delete(_tableName, where: "id = ?", whereArgs: [id]);
+    final res = db.delete(_tableName, where: 'id = ?', whereArgs: [id]);
     return res;
   }
 }

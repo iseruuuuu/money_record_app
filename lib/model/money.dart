@@ -2,13 +2,6 @@
 import 'package:uuid/uuid.dart';
 
 class Todo {
-  String? id;
-  int buyPrice;
-  int discountPrice;
-  String categoryName;
-  DateTime createdDate;
-  int colorCode;
-
   Todo({
     this.id,
     required this.buyPrice,
@@ -17,10 +10,6 @@ class Todo {
     required this.createdDate,
     required this.colorCode,
   });
-
-  assignUUID() {
-    id = const Uuid().v4();
-  }
 
   factory Todo.fromMap(Map<String, dynamic> json) => Todo(
         id: json["id"],
@@ -31,12 +20,23 @@ class Todo {
         colorCode: json["colorCode"],
       );
 
+  String? id;
+  int buyPrice;
+  int discountPrice;
+  String categoryName;
+  DateTime createdDate;
+  int colorCode;
+
+  String? assignUUID() {
+    return id = const Uuid().v4();
+  }
+
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "buyPrice": buyPrice,
-        "discountPrice": discountPrice,
-        "categoryName": categoryName,
-        "createdDate": createdDate.toUtc().toIso8601String(),
-        "colorCode": colorCode,
+        'id': id,
+        'buyPrice': buyPrice,
+        'discountPrice': discountPrice,
+        'categoryName': categoryName,
+        'createdDate': createdDate.toUtc().toIso8601String(),
+        'colorCode': colorCode,
       };
 }

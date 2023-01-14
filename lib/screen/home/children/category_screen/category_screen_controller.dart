@@ -10,7 +10,7 @@ import 'package:money_records_app/preference/shared_preference.dart';
 class CategoryScreenController extends GetxController {
 
   RxList<String> categoryList = [''].obs;
-  var categoryName = ''.obs;
+  RxString categoryName = ''.obs;
   RxInt color = 0.obs;
 
   @override
@@ -29,8 +29,8 @@ class CategoryScreenController extends GetxController {
   }
 
   Future<void> addList() async {
-    var color = (Random().nextDouble() * 0xFFFFFF).toInt();
-    var colorCode = '0xFF$color';
+    final color = (Random().nextDouble() * 0xFFFFFF).toInt();
+    final colorCode = '0xFF$color';
     await Preference().setString(categoryName.value, colorCode);
     categoryList.add(categoryName.value);
     await Preference().setListString(PreferenceKey.categoryList, categoryList);

@@ -12,7 +12,7 @@ class GraphEmptyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BannerAd myBanner = BannerAd(
+    final myBanner = BannerAd(
       adUnitId: Platform.isAndroid
           //android
           ? 'ca-app-pub-3940256099942544/6300978111'
@@ -27,8 +27,8 @@ class GraphEmptyScreen extends StatelessWidget {
       ),
     );
     myBanner.load();
-    final AdWidget adWidget = AdWidget(ad: myBanner);
-    final Container adContainer = Container(
+    final adWidget = AdWidget(ad: myBanner);
+    final adContainer = Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: myBanner.size.height.toDouble(),

@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BannerAd myBanner = BannerAd(
+    final myBanner = BannerAd(
       adUnitId: Platform.isAndroid
           //android
           ? 'ca-app-pub-3940256099942544/6300978111'
@@ -33,8 +33,8 @@ class HomeScreen extends StatelessWidget {
     );
 
     myBanner.load();
-    final AdWidget adWidget = AdWidget(ad: myBanner);
-    final Container adContainer = Container(
+    final adWidget = AdWidget(ad: myBanner);
+    final adContainer = Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: myBanner.size.height.toDouble(),
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 2),
               child: TextField(
-                onChanged: (value) => controller.changeDiscountPrice(value),
+                onChanged: controller.changeDiscountPrice,
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 40),
               child: TextField(
-                onChanged: (value) => controller.changeBuyPrice(value),
+                onChanged: controller.changeBuyPrice,
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onTap: () => controller.changeCategory(),
+                onTap: controller.changeCategory,
               ),
             ),
             Obx(
@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 18,
                     ),
                   ),
-                  onTap: () => controller.changeDateTime(),
+                  onTap: controller.changeDateTime,
                 ),
               ),
             ),
@@ -158,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () => controller.onTapStore(),
+                onPressed: controller.onTapStore,
                 child: const Text(
                   '保存',
                   style: TextStyle(

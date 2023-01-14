@@ -26,7 +26,7 @@ class DetailScreen extends StatelessWidget {
   //TODO デザインを修正する
   @override
   Widget build(BuildContext context) {
-    final BannerAd myBanner = BannerAd(
+    final myBanner = BannerAd(
       adUnitId: Platform.isAndroid
           //android
           ? 'ca-app-pub-3940256099942544/6300978111'
@@ -42,8 +42,8 @@ class DetailScreen extends StatelessWidget {
     );
 
     myBanner.load();
-    final AdWidget adWidget = AdWidget(ad: myBanner);
-    final Container adContainer = Container(
+    final adWidget = AdWidget(ad: myBanner);
+    final adContainer = Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: myBanner.size.height.toDouble(),
@@ -72,7 +72,8 @@ class DetailScreen extends StatelessWidget {
           ListTile(
             title: const Text('日付'),
             trailing: Text(
-                "${createdDate.year}/${createdDate.month}/${createdDate.day}"),
+              '${createdDate.year}/${createdDate.month}/${createdDate.day}',
+            ),
           ),
           const Spacer(),
           adContainer,

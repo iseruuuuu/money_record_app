@@ -24,7 +24,7 @@ class GraphScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BannerAd myBanner = BannerAd(
+    final myBanner = BannerAd(
       adUnitId: Platform.isAndroid
           //android
           ? 'ca-app-pub-3940256099942544/6300978111'
@@ -40,8 +40,8 @@ class GraphScreen extends StatelessWidget {
     );
 
     myBanner.load();
-    final AdWidget adWidget = AdWidget(ad: myBanner);
-    final Container adContainer = Container(
+    final adWidget = AdWidget(ad: myBanner);
+    final adContainer = Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: myBanner.size.height.toDouble(),
@@ -87,7 +87,7 @@ class GraphScreen extends StatelessWidget {
                     height: 230,
                     child: Obx(
                       () => SfCircularChart(
-                        series: <CircularSeries>[
+                        series: <CircularSeries<dynamic, dynamic>>[
                           PieSeries<ChartData, String>(
                             dataLabelSettings:
                                 const DataLabelSettings(isVisible: false),
@@ -132,7 +132,8 @@ class GraphScreen extends StatelessWidget {
                                       alignment: Alignment.centerRight,
                                       color: Colors.red,
                                       child: const Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 20, 0),
                                         child: Icon(
                                           Icons.delete,
                                           color: Colors.white,
@@ -140,10 +141,11 @@ class GraphScreen extends StatelessWidget {
                                       ),
                                     ),
                                     onDismissed: (direction) {
-                                      bloc.delete(controller.amountIdList[index]);
+                                      bloc.delete(
+                                          controller.amountIdList[index]);
                                       controller.loadInit();
                                     },
-                                    child: Container(
+                                    child: DecoratedBox(
                                       decoration: const BoxDecoration(
                                         border: Border(
                                           bottom: BorderSide(
@@ -156,8 +158,9 @@ class GraphScreen extends StatelessWidget {
                                         onTap: () {
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                              builder: (context) => DetailScreen(
+                                            MaterialPageRoute<void>(
+                                              builder: (context) =>
+                                                  DetailScreen(
                                                 id: controller
                                                     .amountIdList[index],
                                                 discountPrice: controller
@@ -168,7 +171,8 @@ class GraphScreen extends StatelessWidget {
                                                 category: controller
                                                     .amountCategoryList[index],
                                                 createdDate: controller
-                                                        .amountCreatedTimeList[index],
+                                                        .amountCreatedTimeList[
+                                                    index],
                                               ),
                                             ),
                                           );
@@ -195,7 +199,7 @@ class GraphScreen extends StatelessWidget {
                                                   .amountColorCodeList[index]),
                                             ),
                                             Text(
-                                              "${controller.amountBuyList[index]}円",
+                                              '${controller.amountBuyList[index]}円',
                                               style: const TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w500,
