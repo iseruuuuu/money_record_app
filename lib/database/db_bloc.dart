@@ -1,8 +1,13 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:core';
-import 'package:money_records_app/model/money.dart';
+
+// Package imports:
 import 'package:rxdart/rxdart.dart';
+
+// Project imports:
 import 'package:money_records_app/database/db_provider.dart';
+import 'package:money_records_app/model/money.dart';
 
 class TodoBloc {
   final _todoController = BehaviorSubject<List<Todo>>();

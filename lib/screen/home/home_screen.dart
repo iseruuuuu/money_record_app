@@ -1,8 +1,15 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+// Project imports:
 import 'package:money_records_app/screen/home/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {

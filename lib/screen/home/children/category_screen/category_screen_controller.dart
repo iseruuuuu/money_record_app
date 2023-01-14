@@ -1,5 +1,10 @@
+// Dart imports:
 import 'dart:math';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:money_records_app/preference/shared_preference.dart';
 
 class CategoryScreenController extends GetxController {

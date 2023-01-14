@@ -1,11 +1,14 @@
+// Package imports:
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:money_records_app/screen/setting/children/license_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
+import 'package:money_records_app/screen/setting/children/license_screen.dart';
 
 class SettingScreenController extends GetxController {
   RxString version = ''.obs;

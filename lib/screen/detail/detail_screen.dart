@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class DetailScreen extends StatelessWidget {

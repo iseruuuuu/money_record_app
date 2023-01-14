@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:money_records_app/screen/graph/graph_screen.dart';
 import 'package:money_records_app/screen/home/home_screen.dart';
 import 'package:money_records_app/screen/setting/setting_screen.dart';
 import 'package:money_records_app/screen/tab/tab_screen_controller.dart';
-import 'package:get/get.dart';
 
 class TabScreen extends StatelessWidget {
   const TabScreen({Key? key}) : super(key: key);

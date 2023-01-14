@@ -1,10 +1,17 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:money_records_app/screen/setting/setting_screen_controller.dart';
-import 'package:settings_ui/settings_ui.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:settings_ui/settings_ui.dart';
+
+// Project imports:
+import 'package:money_records_app/screen/setting/setting_screen_controller.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);

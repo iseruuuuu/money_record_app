@@ -1,7 +1,16 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+// Project imports:
 import 'package:money_records_app/components/graph/graph_list_tile.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/chart_data.dart';
@@ -9,8 +18,6 @@ import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/screen/detail/detail_screen.dart';
 import 'package:money_records_app/screen/graph/children/graph_empty_screen.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
-import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class GraphScreen extends StatelessWidget {
   const GraphScreen({Key? key}) : super(key: key);
