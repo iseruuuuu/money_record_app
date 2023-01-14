@@ -28,11 +28,13 @@ dependencies:
   in_app_review: ^2.0.6
   url_launcher: ^6.1.7
   share: ^2.0.4
-  package_info_plus: ^3.0.2
+
   google_mobile_ads: ^1.0.0
   app_tracking_transparency: ^2.0.3
   flutter_easyloading: ^3.0.5
   panara_dialogs: ^0.1.4
+  new_version: ^0.3.1
+  package_info_plus: ^1.0.0
 
 dev_dependencies:
   blendthink_lints: ^3.0.0
