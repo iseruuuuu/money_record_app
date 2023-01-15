@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
+import 'package:money_records_app/screen/calendar/calendar_screen.dart';
 import 'package:money_records_app/screen/graph/graph_screen.dart';
 import 'package:money_records_app/screen/home/home_screen.dart';
 import 'package:money_records_app/screen/setting/setting_screen.dart';
@@ -22,7 +23,7 @@ class TabScreen extends StatelessWidget {
         body: [
           const HomeScreen(),
           const GraphScreen(),
-          // const CalendarScreen(),
+          const CalendarScreen(),
           const SettingScreen(),
         ][controller.selectedIndex.value],
         bottomNavigationBar: DecoratedBox(
@@ -47,8 +48,8 @@ class TabScreen extends StatelessWidget {
                   icon: Icon(Icons.maps_ugc_outlined), label: '入力'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.auto_graph), label: 'グラフ'),
-              // BottomNavigationBarItem(
-              //     icon: Icon(Icons.calendar_month), label: 'カレンダー'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_month), label: 'カレンダー'),
               BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定'),
             ],
             type: BottomNavigationBarType.fixed,
