@@ -144,6 +144,14 @@ class GraphScreen extends StatelessWidget {
                                   onTap: () => controller.onTapDetail(index),
                                   title: Row(
                                     children: [
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        color: Color(
+                                          controller.amountColorCodeList[index],
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
                                       Text(
                                         controller.amountCategoryList[index],
                                         style: const TextStyle(
@@ -153,24 +161,12 @@ class GraphScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  trailing: Wrap(
-                                    spacing: 20,
-                                    children: [
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        color: Color(
-                                          controller.amountColorCodeList[index],
-                                        ),
-                                      ),
-                                      Text(
-                                        '${controller.amountBuyList[index]}円',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
+                                  trailing: Text(
+                                    '${controller.amountBuyList[index]}円',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),
