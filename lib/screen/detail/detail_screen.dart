@@ -10,14 +10,12 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
     Key? key,
-    required this.id,
     required this.discountPrice,
     required this.buyPrice,
     required this.category,
     required this.createdDate,
   }) : super(key: key);
 
-  final String id;
   final int discountPrice;
   final int buyPrice;
   final String category;
