@@ -25,6 +25,9 @@ lib
     - calendar
       - calendar_screen.dart
       - calendar_screen_controller.dart
+    - category
+      - category_screen.dart
+      - category_screen_controller.dart
     - detail/
       - detail_screen.dart
       - detail_screen_controller.dart
