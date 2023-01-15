@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
+import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';
 import 'package:money_records_app/model/money.dart';
+import 'package:money_records_app/screen/detail/detail_screen.dart';
 
 class GraphScreenController extends GetxController {
   DateTime now = DateTime.now();
@@ -57,8 +60,9 @@ class GraphScreenController extends GetxController {
       value[i].buyPrice.toDouble(),
       Color(value[i].colorCode),
     );
-    chartData..add(newData)
-    ..sort((a, b) => a.x.compareTo(b.x));
+    chartData
+      ..add(newData)
+      ..sort((a, b) => a.x.compareTo(b.x));
   }
 
   void resetList() {
@@ -128,5 +132,22 @@ class GraphScreenController extends GetxController {
         amountSavePrice += value[i].discountPrice;
       }
     });
+  }
+
+  void onTapDetail(int index) {
+    Get.to(
+      () => DetailScreen(
+        discountPrice: amountDiscountPriceList[index],
+        buyPrice: amountBuyList[index],
+        category: amountCategoryList[index],
+        createdDate: amountCreatedTimeList[index],
+      ),
+    );
+  }
+
+  void deleteBloc(BuildContext context, int index) {
+    final bloc = Provider.of<TodoBloc>(context, listen: false);
+    bloc.delete(amountIdList[index]);
+    loadInit();
   }
 }
