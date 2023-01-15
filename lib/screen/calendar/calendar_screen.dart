@@ -27,8 +27,7 @@ class CalendarScreen extends StatelessWidget {
             height: 350,
             child: Obx(
               () => TableCalendar(
-                //TODO 言語を日本語にしたい。
-                // locale: 'ja_JP',
+                locale: 'ja_JP',
                 focusedDay: controller.now.value!,
                 firstDay: DateTime.utc(2022, 12, 1),
                 lastDay: DateTime.utc(2100, 12, 31),
