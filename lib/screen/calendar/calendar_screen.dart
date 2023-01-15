@@ -15,6 +15,7 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CalendarScreenController());
     return Scaffold(
+      backgroundColor: const Color(0xFFFCF8EA),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
