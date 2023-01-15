@@ -1,4 +1,4 @@
-# money_record
+# money_record_app
 
 # File structure 📁
 
