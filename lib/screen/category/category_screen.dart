@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:money_records_app/screen/category/category_screen_controller.dart';
 
-// Project imports:
-
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
 
