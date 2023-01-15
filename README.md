@@ -1,17 +1,68 @@
-# money_records_app
+# money_record
 
-A new Flutter project.
+# File structure 📁
 
-## Getting Started
+```
+lib
+  - _widget_store/
+  
+  - components/
+    - graph/
+      - graph_list_tile.dart
+  
+  - database/
+    - db_bloc.dart
+    - db_provider.dart
+  
+  - model/
+    - chart_data.dart
+    - money.dart
+  
+  - preference/
+    - shared_preference.dart
+  
+  - screen/
+    - calendar
+      - calendar_screen.dart
+      - calendar_screen_controller.dart
+    - detail/
+      - detail_screen.dart
+      - detail_screen_controller.dart
+    - graph/
+      - graph_screen.dart
+      - graph_screen_controller.dart
+    - home/
+      - category
+        - category_screen.dart
+        - category_screen_controller.dart
+      - home_screen.dart
+      - home_screen_controller.dart
+    - setting/
+      - setting_screen.dart
+      - setting_screen_controller.dart
+    - tab/
+      - tab_screen.dart
+      - tab_screen_controller.dart
+    
+  - main.dart
+  - my_app.dart
+```
 
-This project is a starting point for a Flutter application.
+# Architecture 😃 [MVVM]
 
-A few resources to get you started if this is your first Flutter project:
+![to1719_mvvm001-01_MASK](https://user-images.githubusercontent.com/67954894/175755106-76e20f74-f68b-4ef1-a9bb-c7f4cd45f14d.jpeg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Package for State Management 📦
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# money_record_app
+・GetX.   
+・Provider
+
+# Naming convention 😄
+
+| variable name | code style | example |
+| :--- | :--- | :--- |
+| Class name | UpperCamelCase | `HomeScreen` |
+| File/Directory/Package | lowercase_with_underscores | `lib/screen/home/home_screen.dart` |
+| Field/Function name | lowerCamelCase | `routeName` |
+| Constant name | lowerCamelCase | `parameter` |
+
