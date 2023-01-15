@@ -44,6 +44,7 @@ class CategoryScreen extends StatelessWidget {
               onChanged: controller.onChanged,
             ),
           ),
+          const SizedBox(height: 10),
           Expanded(
             child: controller.categoryList.isNotEmpty
                 ? Obx(
@@ -51,20 +52,30 @@ class CategoryScreen extends StatelessWidget {
                       itemCount: controller.categoryList.length,
                       itemBuilder: (BuildContext context, int index) {
                         final categoryList = controller.categoryList;
-                        return ListTile(
-                          onTap: () => controller.onTapBack(index),
-                          title: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () =>
-                                    controller.deleteCategory(index),
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
+                        return Card(
+                          child: ListTile(
+                            onTap: () => controller.onTapBack(index),
+                            contentPadding: EdgeInsets.zero,
+                            title: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () =>
+                                      controller.deleteCategory(index),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                    size: 30,
+                                  ),
                                 ),
-                              ),
-                              Text(categoryList[index]),
-                            ],
+                                Text(
+                                  categoryList[index],
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
