@@ -11,7 +11,7 @@ import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
-import 'package:money_records_app/screen/home/children/category_screen/category_screen.dart';
+import 'package:money_records_app/screen/category/category_screen.dart';
 
 class HomeScreenController extends GetxController {
   RxBool isIncome = false.obs;
