@@ -54,14 +54,36 @@ class CalendarScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final event = controller.calendarList[index];
                   return Card(
-                    //TODO リストのデザインを一新する。
                     child: GestureDetector(
                       onTap: () => controller.onTapDetail(event),
                       child: ListTile(
-                        title: Text(event.categoryName),
-                        subtitle: Text(event.createdDate.toString()),
-                        leading: Text(event.buyPrice.toString()),
-                        trailing: Text(event.discountPrice.toString()),
+                        leading: Text(
+                          event.categoryName,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              '${event.buyPrice}円',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '${event.discountPrice}円',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
