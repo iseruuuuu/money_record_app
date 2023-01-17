@@ -16,8 +16,8 @@ class HomeSavePriceTextField extends StatelessWidget {
       padding: const EdgeInsets.only(
         top: 40,
         bottom: 20,
-        right: 10,
-        left: 10,
+        right: 20,
+        left: 20,
       ),
       child: TextField(
         keyboardType: TextInputType.number,

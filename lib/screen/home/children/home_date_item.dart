@@ -16,8 +16,8 @@ class HomeDateItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         top: 20,
-        right: 10,
-        left: 10,
+        right: 20,
+        left: 20,
         bottom: 50,
       ),
       child: ListTile(

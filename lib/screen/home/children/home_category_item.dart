@@ -14,8 +14,9 @@ class HomeCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListTile(
+        onTap: onTap,
         shape: RoundedRectangleBorder(
           side: const BorderSide(color: Color(0xFF4A67AD)),
           borderRadius: BorderRadius.circular(5),
