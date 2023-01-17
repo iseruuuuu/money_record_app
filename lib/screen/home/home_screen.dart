@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // Project imports:
-import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/screen/home/children/home_button.dart';
 import 'package:money_records_app/screen/home/children/home_buy_price_text_field.dart';
 import 'package:money_records_app/screen/home/children/home_category_item.dart';
@@ -49,9 +48,16 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBarItem(
-        title: '収支記録',
-        appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF4A67AD),
+        elevation: 0,
+        title: const Text(
+          '収支記録',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
