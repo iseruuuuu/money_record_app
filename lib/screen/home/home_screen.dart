@@ -3,13 +3,18 @@ import 'dart:io';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // Project imports:
+import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/screen/home/children/home_button.dart';
+import 'package:money_records_app/screen/home/children/home_buy_price_text_field.dart';
+import 'package:money_records_app/screen/home/children/home_category_item.dart';
+import 'package:money_records_app/screen/home/children/home_date_item.dart';
+import 'package:money_records_app/screen/home/children/home_save_price_text_field.dart';
 import 'package:money_records_app/screen/home/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,132 +48,30 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeScreenController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFFFCF8EA),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
-        elevation: 0,
-        title: const Text(
-          '収支記録',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      backgroundColor: Colors.white,
+      appBar: AppBarItem(
+        title: '収支記録',
+        appBar: AppBar(),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 2),
-              child: TextField(
-                onChanged: controller.changeDiscountPrice,
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(
-                  labelText: '節約できた値段',
-                  labelStyle: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 40),
-              child: TextField(
-                onChanged: controller.changeBuyPrice,
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(
-                  labelText: '購入金額',
-                  labelStyle: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
+            HomeSavePriceTextField(onChanged: controller.changeDiscountPrice),
+            HomeBuyPriceTextField(onChanged: controller.changeBuyPrice),
             Obx(
-              () => ListTile(
-                tileColor: Colors.white,
-                leading: const Text(
-                  'カテゴリー',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-                trailing: Text(
-                  controller.categoryName.value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
-                ),
+              () => HomeCategoryItem(
+                categoryName: controller.categoryName.value,
                 onTap: controller.changeCategory,
               ),
             ),
             Obx(
-              () => Padding(
-                padding: const EdgeInsets.only(bottom: 42),
-                child: ListTile(
-                  tileColor: Colors.white,
-                  leading: const Text(
-                    '日付',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  trailing: Text(
-                    controller.createdDate.value,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 18,
-                    ),
-                  ),
-                  onTap: controller.changeDateTime,
-                ),
+              () => HomeDateItem(
+                createdTime: controller.createdDate.value,
+                onTap: controller.changeDateTime,
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 100,
-              height: 50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFF4A67AD),
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                ),
-                onPressed: controller.onTapStore,
-                child: const Text(
-                  '保存',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-            ),
+            HomeButton(onPressed: controller.onTapStore),
             const Spacer(),
             adContainer,
           ],
