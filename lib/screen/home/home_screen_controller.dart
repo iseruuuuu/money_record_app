@@ -74,9 +74,8 @@ class HomeScreenController extends GetxController {
   }
 
   void onTapStore() {
-    //todo warningを消す。
-    if (buyPrice.value != '' &&
-        discountPrice.value != '' &&
+    if (buyPrice.value != 0 &&
+        discountPrice.value != 0 &&
         categoryName.value != '') {
       final newMoney = Todo(
         buyPrice: buyPrice.value,
