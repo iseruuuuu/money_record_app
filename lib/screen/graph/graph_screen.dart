@@ -146,11 +146,17 @@ class GraphScreen extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(width: 10),
-                                      Text(
-                                        controller.amountCategoryList[index],
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                250,
+                                        child: Text(
+                                          controller.amountCategoryList[index],
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],

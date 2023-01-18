@@ -59,11 +59,15 @@ class CalendarScreen extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () => controller.onTapDetail(event),
                         child: ListTile(
-                          leading: Text(
-                            event.categoryName,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                          leading: SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              event.categoryName,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           trailing: Column(
