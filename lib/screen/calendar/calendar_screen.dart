@@ -15,7 +15,7 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CalendarScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFFCF8EA),
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
@@ -53,36 +53,39 @@ class CalendarScreen extends StatelessWidget {
                 itemCount: controller.calendarList.length,
                 itemBuilder: (context, index) {
                   final event = controller.calendarList[index];
-                  return Card(
-                    child: GestureDetector(
-                      onTap: () => controller.onTapDetail(event),
-                      child: ListTile(
-                        leading: Text(
-                          event.categoryName,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Card(
+                      child: GestureDetector(
+                        onTap: () => controller.onTapDetail(event),
+                        child: ListTile(
+                          leading: Text(
+                            event.categoryName,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        trailing: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '${event.buyPrice}円',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '${event.buyPrice}円',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              '${event.discountPrice}円',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                              Text(
+                                '${event.discountPrice}円',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

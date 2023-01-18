@@ -49,6 +49,7 @@ class DetailScreen extends StatelessWidget {
     );
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,

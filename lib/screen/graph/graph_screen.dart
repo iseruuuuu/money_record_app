@@ -46,7 +46,7 @@ class GraphScreen extends StatelessWidget {
 
     final controller = Get.put(GraphScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFFCF8EA),
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
@@ -78,7 +78,7 @@ class GraphScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    color: const Color(0xFFFCF8EA),
+                    color: const Color(0xFFF2F2F7),
                     height: 230,
                     child: Obx(
                       () => SfCircularChart(
@@ -110,8 +110,7 @@ class GraphScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      color: const Color(0xFFFCF8EA),
-                      //TODO 現在、StreamBuilderを使っていないため、取り除くor入れる
+                      color: const Color(0xFFF2F2F7),
                       child: Obx(
                         () => ListView.builder(
                           itemCount: controller.listLength.value,
@@ -131,12 +130,13 @@ class GraphScreen extends StatelessWidget {
                               ),
                               onDismissed: (direction) =>
                                   controller.deleteBloc(context, index),
-                              child: DecoratedBox(
+                              child: Container(
                                 decoration: const BoxDecoration(
+                                  color: Colors.white,
                                   border: Border(
                                     bottom: BorderSide(
                                       width: 1,
-                                      color: Colors.orange,
+                                      color: Color(0xFF4A67AD),
                                     ),
                                   ),
                                 ),

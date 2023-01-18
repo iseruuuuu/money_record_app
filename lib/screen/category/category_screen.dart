@@ -14,6 +14,7 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CategoryScreenController());
     return Scaffold(
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
@@ -22,7 +23,7 @@ class CategoryScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10, right: 5, left: 5),
+            margin: const EdgeInsets.only(top: 10, right: 15, left: 15),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               border: Border.all(width: 3),
@@ -52,29 +53,32 @@ class CategoryScreen extends StatelessWidget {
                       itemCount: controller.categoryList.length,
                       itemBuilder: (BuildContext context, int index) {
                         final categoryList = controller.categoryList;
-                        return Card(
-                          child: ListTile(
-                            onTap: () => controller.onTapBack(index),
-                            contentPadding: EdgeInsets.zero,
-                            title: Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () =>
-                                      controller.deleteCategory(index),
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                    size: 30,
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Card(
+                            child: ListTile(
+                              onTap: () => controller.onTapBack(index),
+                              contentPadding: EdgeInsets.zero,
+                              title: Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () =>
+                                        controller.deleteCategory(index),
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                      size: 30,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  categoryList[index],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                  Text(
+                                    categoryList[index],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         );

@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeScreenController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,

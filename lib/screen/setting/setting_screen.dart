@@ -43,7 +43,7 @@ class SettingScreen extends StatelessWidget {
     );
     final controller = Get.put(SettingScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFFCF8EA),
+      backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
         elevation: 0,
@@ -60,7 +60,9 @@ class SettingScreen extends StatelessWidget {
           Expanded(
             child: SettingsList(
               lightTheme: const SettingsThemeData(
-                  settingsListBackground: Color(0xFFFCF8EA)),
+                settingsListBackground: Color(0xFFF2F2F7),
+                settingsSectionBackground: Colors.white,
+              ),
               sections: [
                 SettingsSection(
                   tiles: [
