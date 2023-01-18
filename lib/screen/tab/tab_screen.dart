@@ -38,7 +38,7 @@ class TabScreen extends StatelessWidget {
           child: BottomNavigationBar(
             elevation: 0,
             backgroundColor: Colors.white,
-            selectedItemColor: Colors.orange,
+            selectedItemColor: const Color(0xFF4A67AD),
             unselectedItemColor: Colors.black,
             iconSize: 30,
             currentIndex: controller.selectedIndex.value,
