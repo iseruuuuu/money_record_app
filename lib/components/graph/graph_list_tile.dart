@@ -6,17 +6,25 @@ class GraphListTile extends StatelessWidget {
     Key? key,
     required this.leading,
     required this.trailing,
+    required this.color,
+    required this.isFirst,
   }) : super(key: key);
 
   final String leading;
   final String trailing;
+  final Color color;
+  final bool isFirst;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
+        color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 3, color: Color(0xFF4A67AD)),
+          bottom: BorderSide(width: 2, color: Color(0xFF4A67AD)),
+          top: isFirst
+              ? BorderSide(width: 2, color: Color(0xFF4A67AD))
+              : BorderSide.none,
         ),
       ),
       child: ListTile(
@@ -29,9 +37,10 @@ class GraphListTile extends StatelessWidget {
         ),
         trailing: Text(
           '$trailing円',
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
+            color: color,
           ),
         ),
       ),

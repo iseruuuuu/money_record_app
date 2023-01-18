@@ -95,17 +95,20 @@ class GraphScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Divider(thickness: 3, color: Color(0xFF4A67AD)),
                   Obx(
                     () => GraphListTile(
                       leading: '合計',
                       trailing: controller.amountBuyPrice.value.toString(),
+                      color: Colors.black,
+                      isFirst: true,
                     ),
                   ),
                   Obx(
                     () => GraphListTile(
                       leading: '節約できた金額',
                       trailing: controller.amountSavePrice.value.toString(),
+                      color: Colors.grey,
+                      isFirst: false,
                     ),
                   ),
                   Expanded(
@@ -130,16 +133,7 @@ class GraphScreen extends StatelessWidget {
                               ),
                               onDismissed: (direction) =>
                                   controller.deleteBloc(context, index),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      width: 1,
-                                      color: Color(0xFF4A67AD),
-                                    ),
-                                  ),
-                                ),
+                              child: Card(
                                 child: ListTile(
                                   onTap: () => controller.onTapDetail(index),
                                   title: Row(
@@ -161,12 +155,26 @@ class GraphScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  trailing: Text(
-                                    '${controller.amountBuyList[index]}円',
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                  trailing: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        '${controller.amountBuyList[index]}円',
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${controller.amountDiscountPriceList[index]}円',
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
