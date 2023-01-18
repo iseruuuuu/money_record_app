@@ -6,10 +6,10 @@ class LicenseScreen extends StatefulWidget {
   const LicenseScreen({Key? key}) : super(key: key);
 
   @override
-  _LicenseScreenState createState() => _LicenseScreenState();
+  LicenseScreenState createState() => LicenseScreenState();
 }
 
-class _LicenseScreenState extends State<LicenseScreen> {
+class LicenseScreenState extends State<LicenseScreen> {
   List<List<String>> licenses = [];
 
   @override
