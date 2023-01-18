@@ -19,6 +19,7 @@ class HomeBuyPriceTextField extends StatelessWidget {
         left: 20,
       ),
       child: TextField(
+        onChanged: onChanged,
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         decoration: const InputDecoration(
