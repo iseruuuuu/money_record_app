@@ -86,7 +86,7 @@ class GraphScreen extends StatelessWidget {
                           PieSeries<ChartData, String>(
                             dataLabelSettings:
                                 const DataLabelSettings(isVisible: false),
-                            dataSource: controller.chartData.value,
+                            dataSource: controller.chartData.toList(),
                             pointColorMapper: (ChartData data, _) => data.color,
                             xValueMapper: (ChartData data, _) => data.x,
                             yValueMapper: (ChartData data, _) => data.y,

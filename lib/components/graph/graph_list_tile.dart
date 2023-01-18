@@ -21,9 +21,9 @@ class GraphListTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 2, color: Color(0xFF4A67AD)),
+          bottom: const BorderSide(width: 2, color: Color(0xFF4A67AD)),
           top: isFirst
-              ? BorderSide(width: 2, color: Color(0xFF4A67AD))
+              ? const BorderSide(width: 2, color: Color(0xFF4A67AD))
               : BorderSide.none,
         ),
       ),

@@ -11,11 +11,11 @@ class DBProvider {
 
   static final DBProvider db = DBProvider._();
 
-  static late Database _database;
+  static late Database todoDatabases;
   static const _tableName = 'Todo';
 
   Future<Database> get database async {
-    return _database = await initDB();
+    return todoDatabases = await initDB();
   }
 
   Future<Database> initDB() async {
