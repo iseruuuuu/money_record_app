@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
@@ -21,7 +22,6 @@ class DetailScreen extends StatelessWidget {
   final String category;
   final DateTime createdDate;
 
-  //TODO デザインを修正する
   @override
   Widget build(BuildContext context) {
     final myBanner = BannerAd(
@@ -48,36 +48,105 @@ class DetailScreen extends StatelessWidget {
       child: adWidget,
     );
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          ListTile(
-            title: const Text('節約できた金額'),
-            trailing: Text('$discountPrice円'),
-          ),
-          ListTile(
-            title: const Text('支払った金額'),
-            trailing: Text('$buyPrice円'),
-          ),
-          ListTile(
-            title: const Text('種類'),
-            trailing: Text(category),
-          ),
-          ListTile(
-            title: const Text('日付'),
-            trailing: Text(
-              '${createdDate.year}/${createdDate.month}/${createdDate.day}',
+    final deviceSize = MediaQuery.of(context).size.width;
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF2F2F7),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF4A67AD),
+          elevation: 0,
+        ),
+        body: Column(
+          children: [
+            ListTile(
+              title: const Text(
+                '支払った金額',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              trailing: SizedBox(
+                width: deviceSize - 200,
+                child: Text(
+                  '$buyPrice円',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
-          ),
-          const Spacer(),
-          adContainer,
-          const SizedBox(height: 15),
-        ],
+            const DetailDividerItem(),
+            ListTile(
+              title: const Text(
+                '節約できた金額',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              trailing: SizedBox(
+                width: deviceSize - 200,
+                child: Text(
+                  '$discountPrice円',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            const DetailDividerItem(),
+            ListTile(
+              title: const Text(
+                '種類',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              trailing: SizedBox(
+                width: MediaQuery.of(context).size.width - 120,
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            const DetailDividerItem(),
+            ListTile(
+              title: const Text(
+                '日付',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              trailing: Text(
+                '${createdDate.year}年${createdDate.month}月${createdDate.day}日',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const DetailDividerItem(),
+            const Spacer(),
+            adContainer,
+          ],
+        ),
       ),
     );
   }
