@@ -12,14 +12,26 @@ class TabScreenController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    checkUpdate();
+  }
 
+  void checkUpdate() async {
     final newVersion = NewVersion(
-      androidId: '',
       iOSId: 'com.moneyRecordsApp',
-      iOSAppStoreCountry: 'JP', //AppStoreの登録している国コード(日本の場合JP)
+      iOSAppStoreCountry: 'JP',
     );
-
-    newVersion.showAlertIfNecessary(context: Get.context!);
+    final status = await newVersion.getVersionStatus();
+    if (status != null && status.canUpdate) {
+      String storeVersion = status.storeVersion;
+      newVersion.showUpdateDialog(
+        context: Get.context!,
+        versionStatus: status,
+        dialogTitle: 'アップデートが必要です',
+        dialogText: 'Ver.$storeVersionが公開されています。\n最新バージョンのアップデートをお願いします。',
+        updateButtonText: 'アップデート',
+        allowDismissal: false,
+      );
+    }
   }
 
   void onTap(int index) {
