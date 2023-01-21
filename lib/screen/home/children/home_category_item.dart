@@ -31,12 +31,17 @@ class HomeCategoryItem extends StatelessWidget {
           ),
           maxLines: 1,
         ),
-        trailing: Text(
-          categoryName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-            fontSize: 15,
+        trailing: SizedBox(
+          width: MediaQuery.of(context).size.width - 160,
+          child: Text(
+            categoryName,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 20,
+            ),
+            textAlign: TextAlign.end,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),
