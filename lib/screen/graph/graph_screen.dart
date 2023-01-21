@@ -165,19 +165,33 @@ class GraphScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Text(
-                                        '${controller.amountBuyList[index]}円',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                300,
+                                        child: Text(
+                                          '${controller.amountBuyList[index]}円',
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      Text(
-                                        '${controller.amountDiscountPriceList[index]}円',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.grey,
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                300,
+                                        child: Text(
+                                          '${controller.amountDiscountPriceList[index]}円',
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.grey,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],
