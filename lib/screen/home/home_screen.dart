@@ -60,6 +60,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
           children: [
