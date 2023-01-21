@@ -29,7 +29,7 @@ class TabScreenController extends GetxController
         dialogTitle: 'アップデートが必要です',
         dialogText: 'Ver.$storeVersionが公開されています。\n最新バージョンのアップデートをお願いします。',
         updateButtonText: 'アップデート',
-        allowDismissal: false,
+        dismissButtonText: 'あとで',
       );
     }
   }
