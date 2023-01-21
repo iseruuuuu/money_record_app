@@ -80,19 +80,29 @@ class CalendarScreen extends StatelessWidget {
                           trailing: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                '${event.buyPrice}円',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width - 300,
+                                child: Text(
+                                  '${event.buyPrice}円',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Text(
-                                '${event.discountPrice}円',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey,
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width - 300,
+                                child: Text(
+                                  '${event.discountPrice}円',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],
