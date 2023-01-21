@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:new_version/new_version.dart';
 
 // Project imports:
+import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
 
 class TabScreenController extends GetxController
@@ -39,6 +40,10 @@ class TabScreenController extends GetxController
     if (selectedIndex.value == 1) {
       final controller = Get.put(GraphScreenController());
       controller.loadInit();
+    } else if (selectedIndex.value == 2) {
+      final controller = Get.put(CalendarScreenController());
+      final now = DateTime.now();
+      controller.loadSelectDate(now);
     }
   }
 }

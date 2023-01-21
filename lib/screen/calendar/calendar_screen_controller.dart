@@ -18,7 +18,6 @@ class CalendarScreenController extends GetxController {
   void onInit() {
     super.onInit();
     now.value = DateTime.now();
-    loadSelectDate(now.value!);
   }
 
   void loadSelectDate(DateTime selectDate) {
