@@ -113,7 +113,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               trailing: SizedBox(
-                width: MediaQuery.of(context).size.width - 120,
+                width: deviceSize - 120,
                 child: Text(
                   category,
                   style: const TextStyle(
