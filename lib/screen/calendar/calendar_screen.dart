@@ -18,6 +18,13 @@ class CalendarScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4A67AD),
+        title: const Text(
+          'カレンダー',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         elevation: 0,
       ),
       body: Column(
