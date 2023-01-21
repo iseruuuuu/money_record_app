@@ -22,16 +22,14 @@ class HomeCategoryItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         tileColor: Colors.white,
-        leading: const Expanded(
-          child: Text(
-            'カテゴリー',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            ),
-            maxLines: 1,
+        leading: const Text(
+          'カテゴリー',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
           ),
+          maxLines: 1,
         ),
         trailing: Text(
           categoryName,
