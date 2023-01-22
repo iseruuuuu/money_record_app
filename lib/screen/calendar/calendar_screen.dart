@@ -79,6 +79,7 @@ class CalendarScreen extends StatelessWidget {
                           ),
                           trailing: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                 width: MediaQuery.of(context).size.width - 300,
