@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class GraphListTile extends StatelessWidget {
-  const GraphListTile({
+class GraphItem extends StatelessWidget {
+  const GraphItem({
     Key? key,
     required this.leading,
     required this.trailing,
