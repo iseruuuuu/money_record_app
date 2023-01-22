@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/screen/graph/children/graph_item.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
-import 'package:money_records_app/components/graph/graph_list_tile.dart';
+import 'package:money_records_app/screen/graph/children/graph_list_tile.dart';
 import 'package:money_records_app/model/chart_data.dart';
 import 'package:money_records_app/screen/graph/children/graph_empty_screen.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
@@ -96,7 +97,7 @@ class GraphScreen extends StatelessWidget {
                     ),
                   ),
                   Obx(
-                    () => GraphListTile(
+                    () => GraphItem(
                       leading: '合計',
                       trailing: controller.amountBuyPrice.value.toString(),
                       color: Colors.black,
@@ -104,7 +105,7 @@ class GraphScreen extends StatelessWidget {
                     ),
                   ),
                   Obx(
-                    () => GraphListTile(
+                    () => GraphItem(
                       leading: '節約できた金額',
                       trailing: controller.amountSavePrice.value.toString(),
                       color: Colors.grey,
@@ -112,95 +113,24 @@ class GraphScreen extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      color: const Color(0xFFF2F2F7),
-                      child: Obx(
-                        () => ListView.builder(
-                          itemCount: controller.listLength.value,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Dismissible(
-                              key: Key(controller.amountIdList[index]),
-                              background: Container(
-                                alignment: Alignment.centerRight,
-                                color: Colors.red,
-                                child: const Padding(
-                                  padding: EdgeInsets.only(right: 50),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              onDismissed: (direction) =>
-                                  controller.deleteBloc(context, index),
-                              child: Card(
-                                child: ListTile(
-                                  onTap: () => controller.onTapDetail(index),
-                                  title: Row(
-                                    children: [
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        color: Color(
-                                          controller.amountColorCodeList[index],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                250,
-                                        child: Text(
-                                          controller.amountCategoryList[index],
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  trailing: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                300,
-                                        child: Text(
-                                          '${controller.amountBuyList[index]}円',
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.end,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                300,
-                                        child: Text(
-                                          '${controller.amountDiscountPriceList[index]}円',
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.grey,
-                                          ),
-                                          textAlign: TextAlign.end,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                    child: Obx(
+                      () => ListView.builder(
+                        itemCount: controller.listLength.value,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GraphListTile(
+                            cellKey: controller.amountIdList[index],
+                            onDismissed: (direction) =>
+                                controller.deleteBloc(context, index),
+                            onTap: () => controller.onTapDetail(index),
+                            colorCode: controller.amountColorCodeList[index],
+                            categoryName: controller.amountCategoryList[index],
+                            buyPrice:
+                                controller.amountBuyList[index].toString(),
+                            discountPrice: controller
+                                .amountDiscountPriceList[index]
+                                .toString(),
+                          );
+                        },
                       ),
                     ),
                   ),
