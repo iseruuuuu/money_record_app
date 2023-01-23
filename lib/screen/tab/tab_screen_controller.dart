@@ -5,6 +5,7 @@ import 'package:new_version/new_version.dart';
 // Project imports:
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class TabScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -22,7 +23,8 @@ class TabScreenController extends GetxController
       iOSAppStoreCountry: 'JP',
     );
     final status = await newVersion.getVersionStatus();
-    if (status != null && status.canUpdate) {
+    final packageInfo = await PackageInfo.fromPlatform();
+    if (status != null && status.storeVersion != packageInfo.buildNumber) {
       String storeVersion = status.storeVersion;
       newVersion.showUpdateDialog(
         context: Get.context!,
