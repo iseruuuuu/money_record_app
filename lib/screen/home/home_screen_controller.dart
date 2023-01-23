@@ -61,7 +61,8 @@ class HomeScreenController extends GetxController {
     }
   }
 
-  Future<void> changeDateTime() async {
+  Future<void> changeDateTime(BuildContext context) async {
+    FocusScope.of(context).unfocus();
     final date = DateTime.now();
     final picked = await showDatePicker(
         context: Get.context!,

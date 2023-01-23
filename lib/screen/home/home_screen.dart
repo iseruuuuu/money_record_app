@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
             Obx(
               () => HomeDateItem(
                 createdTime: controller.createdDate.value,
-                onTap: controller.changeDateTime,
+                onTap: () => controller.changeDateTime(context),
               ),
             ),
             HomeButton(onPressed: controller.onTapStore),
