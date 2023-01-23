@@ -51,7 +51,8 @@ class HomeScreenController extends GetxController {
     buyPrice.value = int.parse(buyPrices);
   }
 
-  Future<void> changeCategory() async {
+  Future<void> changeCategory(BuildContext context) async {
+    FocusScope.of(context).unfocus();
     final result = await Get.to(() => const CategoryScreen());
     if (result != null) {
       categoryName.value = result.toString();

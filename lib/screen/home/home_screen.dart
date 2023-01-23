@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             Obx(
               () => HomeCategoryItem(
                 categoryName: controller.categoryName.value,
-                onTap: controller.changeCategory,
+                onTap: () => controller.changeCategory(context),
               ),
             ),
             Obx(
