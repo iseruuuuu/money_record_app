@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:money_records_app/components/app_bar_item.dart';
 
 // Project imports:
 import 'package:money_records_app/screen/category/category_screen_controller.dart';
@@ -15,10 +16,9 @@ class CategoryScreen extends StatelessWidget {
     final controller = Get.put(CategoryScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
-        elevation: 0,
-        title: const Text('カテゴリー編集'),
+      appBar: AppBarItem(
+        appBar: AppBar(),
+        title: 'カテゴリー編集',
       ),
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -74,8 +74,8 @@ class CategoryScreen extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(
-                                      width:
-                                          MediaQuery.of(context).size.width - 100,
+                                      width: MediaQuery.of(context).size.width -
+                                          100,
                                       child: Text(
                                         categoryList[index],
                                         style: const TextStyle(

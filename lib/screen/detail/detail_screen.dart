@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/components/app_bar_item.dart';
 
 // Project imports:
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
@@ -55,9 +56,9 @@ class DetailScreen extends StatelessWidget {
       top: false,
       child: Scaffold(
         backgroundColor: const Color(0xFFF2F2F7),
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF4A67AD),
-          elevation: 0,
+        appBar: AppBarItem(
+          appBar: AppBar(),
+          title: '',
         ),
         body: Column(
           children: [

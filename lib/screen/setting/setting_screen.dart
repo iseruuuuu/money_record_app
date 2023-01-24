@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 // Project imports:
@@ -44,16 +45,9 @@ class SettingScreen extends StatelessWidget {
     final controller = Get.put(SettingScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
-        elevation: 0,
-        title: const Text(
-          '設定',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+      appBar: AppBarItem(
+        appBar: AppBar(),
+        title: '設定',
       ),
       body: Column(
         children: [

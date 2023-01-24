@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // Project imports:
@@ -16,16 +17,9 @@ class CalendarScreen extends StatelessWidget {
     final controller = Get.put(CalendarScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
-        title: const Text(
-          'カレンダー',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        elevation: 0,
+      appBar: AppBarItem(
+        appBar: AppBar(),
+        title: 'カレンダー',
       ),
       body: Column(
         children: [
