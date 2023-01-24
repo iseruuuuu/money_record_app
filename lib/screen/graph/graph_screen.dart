@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:money_records_app/screen/graph/children/graph_item.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
-import 'package:money_records_app/screen/graph/children/graph_list_tile.dart';
 import 'package:money_records_app/model/chart_data.dart';
 import 'package:money_records_app/screen/graph/children/graph_empty_screen.dart';
+import 'package:money_records_app/screen/graph/children/graph_item.dart';
+import 'package:money_records_app/screen/graph/children/graph_list_tile.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
 
 class GraphScreen extends StatelessWidget {

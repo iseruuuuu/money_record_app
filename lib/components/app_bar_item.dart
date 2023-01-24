@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class AppBarItem extends StatelessWidget with PreferredSizeWidget {

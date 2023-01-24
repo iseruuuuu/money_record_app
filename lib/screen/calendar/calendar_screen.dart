@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // Project imports:
+import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 
 class CalendarScreen extends StatelessWidget {
