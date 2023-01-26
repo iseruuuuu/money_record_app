@@ -1,12 +1,8 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
@@ -21,30 +17,6 @@ class GraphScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myBanner = BannerAd(
-      adUnitId: Platform.isAndroid
-          //android
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          //ios
-          : 'ca-app-pub-3471170179614589/7242925577',
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          ad.dispose();
-        },
-      ),
-    );
-
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    final adContainer = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
-
     final controller = Get.put(GraphScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
@@ -134,7 +106,7 @@ class GraphScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  adContainer,
+                  controller.adContainer.value,
                 ],
               ),
       ),

@@ -1,8 +1,12 @@
+// Dart imports:
+import 'dart:io';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -27,12 +31,39 @@ class GraphScreenController extends GetxController {
   RxInt listLength = 0.obs;
   RxInt monthCount = 1.obs;
   RxList<int> amountColorCodeList = [0].obs;
+  var adContainer = Container().obs;
+  final myBanner = BannerAd(
+    adUnitId: Platform.isAndroid
+        //android
+        ? 'ca-app-pub-3940256099942544/6300978111'
+        //ios
+        : 'ca-app-pub-3471170179614589/7242925577',
+    size: AdSize.banner,
+    request: const AdRequest(),
+    listener: BannerAdListener(
+      onAdFailedToLoad: (Ad ad, LoadAdError error) {
+        ad.dispose();
+      },
+    ),
+  );
 
   void loadInit() {
     final outputFormat = DateFormat('yyyy年 MM月');
     date.value = outputFormat.format(now);
     loadAmountMoneys();
     loadList();
+    loadAdmob();
+  }
+
+  void loadAdmob() {
+    myBanner.load();
+    final adWidget = AdWidget(ad: myBanner);
+    adContainer.value = Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(Get.context!).size.width,
+      height: myBanner.size.height.toDouble(),
+      child: adWidget,
+    );
   }
 
   void loadList() {
