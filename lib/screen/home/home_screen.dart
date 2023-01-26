@@ -1,12 +1,8 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
@@ -22,29 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myBanner = BannerAd(
-      adUnitId: Platform.isAndroid
-          //android
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          //ios
-          : 'ca-app-pub-3471170179614589/7242925577',
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          ad.dispose();
-        },
-      ),
-    );
-
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    final adContainer = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
     final controller = Get.put(HomeScreenController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -74,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             ),
             HomeButton(onPressed: controller.onTapStore),
             const Spacer(),
-            adContainer,
+            controller.adContainer.value,
           ],
         ),
       ),
