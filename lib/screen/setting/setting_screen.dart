@@ -1,13 +1,9 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 // Project imports:
@@ -19,29 +15,6 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myBanner = BannerAd(
-      adUnitId: Platform.isAndroid
-          //android
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          //ios
-          : 'ca-app-pub-3471170179614589/7242925577',
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          ad.dispose();
-        },
-      ),
-    );
-
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    final adContainer = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
     final controller = Get.put(SettingScreenController());
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
@@ -119,7 +92,7 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
           ),
-          adContainer,
+          controller.adContainer.value,
         ],
       ),
     );
