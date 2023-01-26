@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
+import 'package:money_records_app/constants/constants.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';
@@ -33,11 +34,7 @@ class GraphScreenController extends GetxController {
   RxList<int> amountColorCodeList = [0].obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid
-        //android
-        ? 'ca-app-pub-3940256099942544/6300978111'
-        //ios
-        : 'ca-app-pub-3471170179614589/7242925577',
+    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

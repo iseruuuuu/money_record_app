@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
 // Project imports:
+import 'package:money_records_app/constants/constants.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
@@ -28,11 +29,7 @@ class HomeScreenController extends GetxController {
   RxInt colorCode = 0.obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid
-        //android
-        ? 'ca-app-pub-3940256099942544/6300978111'
-        //ios
-        : 'ca-app-pub-3471170179614589/7242925577',
+    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(
