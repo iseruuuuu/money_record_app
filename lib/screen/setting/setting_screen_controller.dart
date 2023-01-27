@@ -15,7 +15,7 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/constants.dart';
+import 'package:money_records_app/constants/admob.dart';
 import 'package:money_records_app/screen/setting/children/license_screen.dart';
 
 class SettingScreenController extends GetxController {

@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/constants.dart';
+import 'package:money_records_app/constants/admob.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';

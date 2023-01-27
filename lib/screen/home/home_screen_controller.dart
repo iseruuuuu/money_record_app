@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/constants.dart';
+import 'package:money_records_app/constants/admob.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
