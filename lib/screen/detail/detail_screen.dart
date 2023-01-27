@@ -1,9 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
 import 'package:money_records_app/screen/detail/detail_screen_controller.dart';
 
@@ -24,7 +27,6 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(DetailScreenController());
-    final deviceSize = MediaQuery.of(context).size.width;
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -44,7 +46,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               trailing: SizedBox(
-                width: deviceSize - 200,
+                width: context.screenWidth - 200,
                 child: Text(
                   '$buyPrice円',
                   style: const TextStyle(
@@ -66,7 +68,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               trailing: SizedBox(
-                width: deviceSize - 200,
+                width: context.screenWidth - 200,
                 child: Text(
                   '$discountPrice円',
                   style: const TextStyle(
@@ -89,7 +91,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               trailing: SizedBox(
-                width: deviceSize - 120,
+                width: context.screenWidth - 120,
                 child: Text(
                   category,
                   style: const TextStyle(

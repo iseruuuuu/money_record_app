@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:money_records_app/extension/deviceSize.dart';
+
 class HomeCategoryItem extends StatelessWidget {
   const HomeCategoryItem({
     Key? key,
@@ -32,7 +35,7 @@ class HomeCategoryItem extends StatelessWidget {
           maxLines: 1,
         ),
         trailing: SizedBox(
-          width: MediaQuery.of(context).size.width - 160,
+          width: context.screenWidth - 160,
           child: Text(
             categoryName,
             style: const TextStyle(

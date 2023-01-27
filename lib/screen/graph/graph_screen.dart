@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
+import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/model/chart_data.dart';
 import 'package:money_records_app/screen/graph/children/graph_empty_screen.dart';
 import 'package:money_records_app/screen/graph/children/graph_item.dart';
@@ -50,7 +51,7 @@ class GraphScreen extends StatelessWidget {
             : Column(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: context.screenWidth,
                     color: const Color(0xFFF2F2F7),
                     height: 230,
                     child: Obx(

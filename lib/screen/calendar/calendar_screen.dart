@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 
 class CalendarScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class CalendarScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width,
+            width: context.screenWidth,
             height: 350,
             child: Obx(
               () => TableCalendar(
@@ -61,7 +62,7 @@ class CalendarScreen extends StatelessWidget {
                         onTap: () => controller.onTapDetail(event),
                         child: ListTile(
                           leading: SizedBox(
-                            width: MediaQuery.of(context).size.width / 2,
+                            width: context.screenWidth / 2,
                             child: Text(
                               event.categoryName,
                               style: const TextStyle(
@@ -76,7 +77,7 @@ class CalendarScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
-                                width: MediaQuery.of(context).size.width - 300,
+                                width: context.screenWidth - 300,
                                 child: Text(
                                   '${event.buyPrice}円',
                                   style: const TextStyle(
@@ -88,7 +89,7 @@ class CalendarScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width - 300,
+                                width: context.screenWidth - 300,
                                 child: Text(
                                   '${event.discountPrice}円',
                                   style: const TextStyle(

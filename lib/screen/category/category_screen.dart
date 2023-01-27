@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/category/category_screen_controller.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class CategoryScreen extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 10, right: 15, left: 15),
-                width: MediaQuery.of(context).size.width,
+                width: context.screenWidth,
                 decoration: BoxDecoration(
                   border: Border.all(width: 3),
                   borderRadius: BorderRadius.circular(10),
@@ -77,9 +78,7 @@ class CategoryScreen extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                100,
+                                        width: context.screenWidth - 100,
                                         child: Text(
                                           categoryList[index],
                                           style: const TextStyle(
