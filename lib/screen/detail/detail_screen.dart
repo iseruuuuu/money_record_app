@@ -1,15 +1,11 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
+import 'package:money_records_app/screen/detail/detail_screen_controller.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
@@ -27,30 +23,7 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myBanner = BannerAd(
-      adUnitId: Platform.isAndroid
-          //android
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          //ios
-          : 'ca-app-pub-3471170179614589/7242925577',
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          ad.dispose();
-        },
-      ),
-    );
-
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    final adContainer = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
-
+    final controller = Get.put(DetailScreenController());
     final deviceSize = MediaQuery.of(context).size.width;
     return SafeArea(
       top: false,
@@ -147,7 +120,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const DetailDividerItem(),
             const Spacer(),
-            adContainer,
+            controller.adContainer.value,
           ],
         ),
       ),
