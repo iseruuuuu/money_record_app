@@ -2,13 +2,15 @@
 import 'dart:io';
 import 'dart:math';
 
-// Package imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:money_records_app/constants/admob.dart';
 
 // Project imports:
+import 'package:money_records_app/constants/admob.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
 
 class CategoryScreenController extends GetxController {

@@ -1,8 +1,14 @@
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+// Project imports:
 import 'package:money_records_app/constants/admob.dart';
 
 class DetailScreenController extends GetxController {
