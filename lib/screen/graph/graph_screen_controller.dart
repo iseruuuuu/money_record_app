@@ -20,18 +20,13 @@ import 'package:money_records_app/screen/detail/detail_screen.dart';
 
 class GraphScreenController extends GetxController {
   DateTime now = DateTime.now();
-  RxString date = ''.obs;
+  RxString selectedDate = ''.obs;
   RxInt amountBuyPrice = 0.obs;
   RxInt amountSavePrice = 0.obs;
   RxList<ChartData> chartData = <ChartData>[].obs;
   RxList<String> amountIdList = [''].obs;
-  RxList<int> amountBuyList = [0].obs;
-  RxList<int> amountDiscountPriceList = [0].obs;
-  RxList<String> amountCategoryList = [''].obs;
-  RxList<DateTime> amountCreatedTimeList = [DateTime.now()].obs;
-  RxInt listLength = 0.obs;
-  RxInt monthCount = 1.obs;
-  RxList<int> amountColorCodeList = [0].obs;
+  RxInt monthCount = 0.obs;
+  final graphList = <Todo>[].obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
     adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
@@ -45,8 +40,9 @@ class GraphScreenController extends GetxController {
   );
 
   void loadInit() {
+    graphList.clear();
     final outputFormat = DateFormat('yyyy年 MM月');
-    date.value = outputFormat.format(now);
+    selectedDate.value = outputFormat.format(now);
     loadAmountMoneys();
     loadList();
     loadAdmob();
@@ -77,12 +73,14 @@ class GraphScreenController extends GetxController {
 
   void addList(List<Todo> value, int i) {
     amountIdList.add(value[i].id!);
-    amountBuyList.add(value[i].buyPrice);
-    amountDiscountPriceList.add(value[i].discountPrice);
-    amountCategoryList.add(value[i].categoryName);
-    amountCreatedTimeList.add(value[i].createdDate);
-    amountColorCodeList.add(value[i].colorCode);
-    listLength.value = amountCreatedTimeList.length;
+    final newGraphList = Todo(
+      buyPrice: value[i].buyPrice,
+      discountPrice: value[i].discountPrice,
+      categoryName: value[i].categoryName,
+      createdDate: value[i].createdDate,
+      colorCode: value[i].colorCode,
+    );
+    graphList.add(newGraphList);
     final newData = ChartData(
       value[i].categoryName,
       value[i].buyPrice.toDouble(),
@@ -94,16 +92,11 @@ class GraphScreenController extends GetxController {
   }
 
   void resetList() {
+    graphList.clear();
     amountIdList.value = [];
-    amountBuyList.value = [];
-    amountDiscountPriceList.value = [];
-    amountCategoryList.value = [];
-    amountCreatedTimeList.value = [];
     amountSavePrice.value = 0;
     amountBuyPrice.value = 0;
     chartData.value = [];
-    listLength.value = 0;
-    amountColorCodeList.value = [];
   }
 
   void changeDate({required bool isAdvance, required int month}) {
@@ -136,7 +129,7 @@ class GraphScreenController extends GetxController {
   void setDate(int month) {
     final prevMonthLastDay = DateTime(now.year, month);
     final outputFormat = DateFormat('yyyy年 MM月');
-    date.value = outputFormat.format(prevMonthLastDay);
+    selectedDate.value = outputFormat.format(prevMonthLastDay);
     reloadList(month);
   }
 
@@ -165,10 +158,10 @@ class GraphScreenController extends GetxController {
   void onTapDetail(int index) {
     Get.to(
       () => DetailScreen(
-        discountPrice: amountDiscountPriceList[index],
-        buyPrice: amountBuyList[index],
-        category: amountCategoryList[index],
-        createdDate: amountCreatedTimeList[index],
+        discountPrice: graphList[index].discountPrice,
+        buyPrice: graphList[index].buyPrice,
+        category: graphList[index].categoryName,
+        createdDate: graphList[index].createdDate,
       ),
     );
   }

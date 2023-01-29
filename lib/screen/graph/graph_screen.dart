@@ -28,25 +28,30 @@ class GraphScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () =>
-                  controller.changeDate(isAdvance: false, month: -1),
+              onPressed: () => controller.changeDate(
+                isAdvance: false,
+                month: -1,
+              ),
               icon: const Icon(Icons.arrow_back_ios),
             ),
             Obx(
               () => Text(
-                controller.date.value,
+                controller.selectedDate.value,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             IconButton(
-              onPressed: () => controller.changeDate(isAdvance: true, month: 1),
+              onPressed: () => controller.changeDate(
+                isAdvance: true,
+                month: 1,
+              ),
               icon: const Icon(Icons.arrow_forward_ios),
             ),
           ],
         ),
       ),
       body: Obx(
-        () => controller.amountCategoryList.isEmpty
+        () => controller.graphList.isEmpty
             ? const GraphEmptyScreen()
             : Column(
                 children: [
@@ -88,20 +93,18 @@ class GraphScreen extends StatelessWidget {
                   Expanded(
                     child: Obx(
                       () => ListView.builder(
-                        itemCount: controller.listLength.value,
+                        itemCount: controller.graphList.length,
                         itemBuilder: (BuildContext context, int index) {
+                          final graph = controller.graphList[index];
                           return GraphListTile(
                             cellKey: controller.amountIdList[index],
                             onDismissed: (direction) =>
                                 controller.deleteBloc(context, index),
                             onTap: () => controller.onTapDetail(index),
-                            colorCode: controller.amountColorCodeList[index],
-                            categoryName: controller.amountCategoryList[index],
-                            buyPrice:
-                                controller.amountBuyList[index].toString(),
-                            discountPrice: controller
-                                .amountDiscountPriceList[index]
-                                .toString(),
+                            colorCode: graph.colorCode,
+                            categoryName: graph.categoryName,
+                            buyPrice: graph.buyPrice.toString(),
+                            discountPrice: graph.discountPrice.toString(),
                           );
                         },
                       ),
