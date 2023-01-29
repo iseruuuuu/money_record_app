@@ -7,14 +7,15 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob.dart';
+
 
 class DetailScreenController extends GetxController {
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
+    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

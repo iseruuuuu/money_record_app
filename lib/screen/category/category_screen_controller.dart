@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
 
 class CategoryScreenController extends GetxController {
@@ -19,7 +19,7 @@ class CategoryScreenController extends GetxController {
   RxInt color = 0.obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
+    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

@@ -15,14 +15,14 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/screen/setting/children/license_screen.dart';
 
 class SettingScreenController extends GetxController {
   RxString version = ''.obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
+    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

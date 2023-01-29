@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';
@@ -29,7 +29,7 @@ class GraphScreenController extends GetxController {
   final graphList = <Todo>[].obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
+    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

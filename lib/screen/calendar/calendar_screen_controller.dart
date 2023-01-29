@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob.dart';
+import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/screen/detail/detail_screen.dart';
@@ -25,7 +26,7 @@ class CalendarScreenController extends GetxController {
   List<int> event = [];
   var adContainer = Container().obs;
   final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? Admob.android : Admob.iOS,
+    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
     size: AdSize.banner,
     request: const AdRequest(),
     listener: BannerAdListener(

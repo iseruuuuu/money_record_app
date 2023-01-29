@@ -35,7 +35,7 @@
 lib/generated_plugin_registrant.dart
 
 # adomob
-lib/constants/admob.dart
+lib/constants/admob_constant.dart
 
 # Symbolication related
 app.*.symbols
