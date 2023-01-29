@@ -26,7 +26,7 @@ class GraphScreenController extends GetxController {
   RxList<ChartData> chartData = <ChartData>[].obs;
   RxList<String> amountIdList = [''].obs;
   RxInt monthCount = 0.obs;
-  final graphList = <Todo>[].obs;
+  final graphList = <Money>[].obs;
   var adContainer = Container().obs;
   final myBanner = BannerAd(
     adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
@@ -62,7 +62,7 @@ class GraphScreenController extends GetxController {
   void loadList() {
     resetList();
     monthCount.value = DateTime.now().month;
-    DBProvider.db.getAllTodo().then((value) {
+    DBProvider.db.getAllMoney().then((value) {
       for (var i = 0; i < value.length; i++) {
         if (value[i].createdDate.month == DateTime.now().month) {
           addList(value, i);
@@ -71,9 +71,9 @@ class GraphScreenController extends GetxController {
     });
   }
 
-  void addList(List<Todo> value, int i) {
+  void addList(List<Money> value, int i) {
     amountIdList.add(value[i].id!);
-    final newGraphList = Todo(
+    final newGraphList = Money(
       buyPrice: value[i].buyPrice,
       discountPrice: value[i].discountPrice,
       categoryName: value[i].categoryName,
@@ -135,7 +135,7 @@ class GraphScreenController extends GetxController {
 
   void reloadList(int month) {
     resetList();
-    DBProvider.db.getAllTodo().then((value) {
+    DBProvider.db.getAllMoney().then((value) {
       for (var i = 0; i < value.length; i++) {
         if (value[i].createdDate.month == month) {
           addList(value, i);
@@ -147,7 +147,7 @@ class GraphScreenController extends GetxController {
   void loadAmountMoneys() {
     amountSavePrice.value = 0;
     amountBuyPrice.value = 0;
-    DBProvider.db.getAllTodo().then((value) {
+    DBProvider.db.getAllMoney().then((value) {
       for (var i = 0; i < value.length; i++) {
         amountBuyPrice += value[i].buyPrice;
         amountSavePrice += value[i].discountPrice;
@@ -167,7 +167,7 @@ class GraphScreenController extends GetxController {
   }
 
   void deleteBloc(BuildContext context, int index) {
-    final bloc = Provider.of<TodoBloc>(context, listen: false);
+    final bloc = Provider.of<Bloc>(context, listen: false);
     bloc.delete(amountIdList[index]);
     loadInit();
   }

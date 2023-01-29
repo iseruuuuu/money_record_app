@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:uuid/uuid.dart';
 
-class Todo {
-  Todo({
+class Money {
+  Money({
     this.id,
     required this.buyPrice,
     required this.discountPrice,
@@ -11,7 +11,7 @@ class Todo {
     required this.colorCode,
   });
 
-  factory Todo.fromMap(Map<String, dynamic> json) => Todo(
+  factory Money.fromMap(Map<String, dynamic> json) => Money(
         id: json["id"],
         buyPrice: json["buyPrice"],
         discountPrice: json["discountPrice"],

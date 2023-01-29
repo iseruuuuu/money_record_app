@@ -107,14 +107,14 @@ class HomeScreenController extends GetxController {
     if (buyPrice.value != 0 &&
         discountPrice.value != 0 &&
         categoryName.value != '') {
-      final newMoney = Todo(
+      final newMoney = Money(
         buyPrice: buyPrice.value,
         discountPrice: discountPrice.value,
         categoryName: categoryName.value,
         createdDate: createdDates,
         colorCode: colorCode.value,
       );
-      TodoBloc().create(newMoney);
+      Bloc().create(newMoney);
       openDialog(isError: false);
     } else {
       openDialog(isError: true);

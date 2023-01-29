@@ -21,7 +21,7 @@ class CalendarScreenController extends GetxController {
   final List<DateTime> data;
   Rxn<DateTime> now = Rxn<DateTime>();
   Rxn<DateTime?> daySelected = Rxn<DateTime?>();
-  final calendarList = <Todo>[].obs;
+  final calendarList = <Money>[].obs;
   List<int> event = [];
   var adContainer = Container().obs;
   final myBanner = BannerAd(
@@ -69,13 +69,13 @@ class CalendarScreenController extends GetxController {
 
   void loadSelectDate(DateTime selectDate) {
     calendarList.clear();
-    DBProvider.db.getAllTodo().then((value) {
+    DBProvider.db.getAllMoney().then((value) {
       for (var i = 0; i < value.length; i++) {
         DateFormat outputFormat = DateFormat('yyyy-MM-dd');
         final createdDate = outputFormat.format(value[i].createdDate);
         final selectedDate = outputFormat.format(selectDate);
         if (createdDate == selectedDate) {
-          final newCalendarList = Todo(
+          final newCalendarList = Money(
             buyPrice: value[i].buyPrice,
             discountPrice: value[i].discountPrice,
             categoryName: value[i].categoryName,
@@ -88,7 +88,7 @@ class CalendarScreenController extends GetxController {
     });
   }
 
-  void onTapDetail(Todo todo) {
+  void onTapDetail(Money todo) {
     Get.to(
       () => DetailScreen(
         discountPrice: todo.discountPrice,

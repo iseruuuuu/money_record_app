@@ -18,7 +18,7 @@ class TabScreenController extends GetxController {
 
   void getDate() {
     data.clear();
-    DBProvider.db.getAllTodo().then((value) {
+    DBProvider.db.getAllMoney().then((value) {
       for (var i = 0; i < value.length; i++) {
         data.add(value[i].createdDate);
       }

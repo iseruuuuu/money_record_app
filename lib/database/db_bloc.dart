@@ -8,36 +8,36 @@ import 'package:rxdart/rxdart.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/money.dart';
 
-class TodoBloc {
-  TodoBloc() {
-    getTodos();
+class Bloc {
+  Bloc() {
+    getMoneys();
   }
 
-  final _todoController = BehaviorSubject<List<Todo>>();
+  final _controller = BehaviorSubject<List<Money>>();
 
-  Stream<List<Todo>> get todoStream => _todoController.stream;
+  Stream<List<Money>> get stream => _controller.stream;
 
-  Future<void> getTodos() async {
-    _todoController.sink.add(await DBProvider.db.getAllTodos());
+  Future<void> getMoneys() async {
+    _controller.sink.add(await DBProvider.db.getAllMoneys());
   }
 
   dispose() {
-    _todoController.close();
+    _controller.close();
   }
 
-  void create(Todo todo) {
-    todo.assignUUID();
-    DBProvider.db.createTodo(todo);
-    getTodos();
+  void create(Money money) {
+    money.assignUUID();
+    DBProvider.db.createMoney(money);
+    getMoneys();
   }
 
-  void update(Todo todo) {
-    DBProvider.db.updateTodo(todo);
-    getTodos();
+  void update(Money money) {
+    DBProvider.db.updateMoney(money);
+    getMoneys();
   }
 
   void delete(String id) {
-    DBProvider.db.deleteTodo(id);
-    getTodos();
+    DBProvider.db.deleteMoney(id);
+    getMoneys();
   }
 }

@@ -12,7 +12,7 @@ class DBProvider {
   static final DBProvider db = DBProvider._();
 
   static late Database todoDatabases;
-  static const _tableName = 'Todo';
+  static const _tableName = 'money';
 
   Future<Database> get database async {
     return todoDatabases = await initDB();
@@ -20,7 +20,7 @@ class DBProvider {
 
   Future<Database> initDB() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'TodoDB.db');
+    final path = join(documentsDirectory.path, 'moneyDB.db');
     return openDatabase(
       path,
       version: 1,
@@ -41,42 +41,42 @@ class DBProvider {
     );
   }
 
-  Future<int> createTodo(Todo todo) async {
+  Future<int> createMoney(Money money) async {
     final db = await database;
-    final res = await db.insert(_tableName, todo.toMap());
+    final res = await db.insert(_tableName, money.toMap());
     return res;
   }
 
-  Future<List<Todo>> getAllTodos() async {
+  Future<List<Money>> getAllMoneys() async {
     final db = await database;
     final todo = await db.query(
       _tableName,
       orderBy: 'id DESC',
     );
-    List<Todo> list =
-        todo.isNotEmpty ? todo.map((c) => Todo.fromMap(c)).toList() : [];
+    List<Money> list =
+        todo.isNotEmpty ? todo.map((c) => Money.fromMap(c)).toList() : [];
     return list;
   }
 
-  Future<List<Todo>> getAllTodo() async {
+  Future<List<Money>> getAllMoney() async {
     final db = await database;
-    var todo = await db.query(
+    var money = await db.query(
       _tableName,
       orderBy: 'id DESC',
     );
-    List<Todo> list =
-        todo.isNotEmpty ? todo.map((c) => Todo.fromMap(c)).toList() : [];
+    List<Money> list =
+        money.isNotEmpty ? money.map((c) => Money.fromMap(c)).toList() : [];
     return list;
   }
 
-  Future<int> updateTodo(Todo todo) async {
+  Future<int> updateMoney(Money money) async {
     final db = await database;
-    final res = await db.update(_tableName, todo.toMap(),
-        where: 'id = ?', whereArgs: [todo.id]);
+    final res = await db.update(_tableName, money.toMap(),
+        where: 'id = ?', whereArgs: [money.id]);
     return res;
   }
 
-  Future<int> deleteTodo(String id) async {
+  Future<int> deleteMoney(String id) async {
     final db = await database;
     final res = db.delete(_tableName, where: 'id = ?', whereArgs: [id]);
     return res;

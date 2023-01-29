@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale("ja")],
       locale: const Locale('ja', 'JP'),
-      home: Provider<TodoBloc>(
-        create: (context) => TodoBloc(),
+      home: Provider<Bloc>(
+        create: (context) => Bloc(),
         dispose: (context, bloc) => bloc.dispose(),
         builder: EasyLoading.init(),
         child: const TabScreen(),
