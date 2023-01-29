@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:get/get.dart';
-import 'package:money_records_app/database/db_provider.dart';
 
 // Project imports:
+import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 import 'package:money_records_app/screen/graph/graph_screen_controller.dart';
 
