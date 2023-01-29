@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 // Project imports:
+import 'package:money_records_app/admob/admob.dart';
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/screen/setting/setting_screen_controller.dart';
@@ -94,7 +95,7 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
           ),
-          controller.adContainer.value,
+          GoogleAdInfo().myBannerAd,
         ],
       ),
     );

@@ -1,17 +1,12 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/chart_data.dart';
@@ -27,17 +22,6 @@ class GraphScreenController extends GetxController {
   RxList<String> amountIdList = [''].obs;
   RxInt monthCount = 0.obs;
   final graphList = <Money>[].obs;
-  var adContainer = Container().obs;
-  final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
-    size: AdSize.banner,
-    request: const AdRequest(),
-    listener: BannerAdListener(
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-      },
-    ),
-  );
 
   void loadInit() {
     graphList.clear();
@@ -45,18 +29,6 @@ class GraphScreenController extends GetxController {
     selectedDate.value = outputFormat.format(now);
     loadAmountMoneys();
     loadList();
-    loadAdmob();
-  }
-
-  void loadAdmob() {
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    adContainer.value = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(Get.context!).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
   }
 
   void loadList() {

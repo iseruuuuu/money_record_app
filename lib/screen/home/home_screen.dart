@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
+import 'package:money_records_app/admob/admob.dart';
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/screen/home/children/home_button.dart';
@@ -48,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             ),
             HomeButton(onPressed: controller.onTapStore),
             const Spacer(),
-            controller.adContainer.value,
+            GoogleAdInfo().myBannerAd,
           ],
         ),
       ),

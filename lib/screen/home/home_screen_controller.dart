@@ -1,18 +1,13 @@
-// Dart imports:
-import 'dart:io';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
@@ -27,17 +22,6 @@ class HomeScreenController extends GetxController {
   late DateTime createdDates;
   RxList<String> categoryList = [''].obs;
   RxInt colorCode = 0.obs;
-  var adContainer = Container().obs;
-  final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
-    size: AdSize.banner,
-    request: const AdRequest(),
-    listener: BannerAdListener(
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-      },
-    ),
-  );
 
   @override
   void onInit() {
@@ -46,7 +30,6 @@ class HomeScreenController extends GetxController {
     final now = DateTime.now();
     createdDate.value = DateFormat('yyyy年M月d日').format(now);
     createdDates = now;
-    loadAdmob();
   }
 
   Future<void> loadAppTracking() async {
@@ -54,17 +37,6 @@ class HomeScreenController extends GetxController {
         TrackingStatus.notDetermined) {
       await AppTrackingTransparency.requestTrackingAuthorization();
     }
-  }
-
-  void loadAdmob() {
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    adContainer.value = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(Get.context!).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
   }
 
   void changeIncome({required bool isIncomes}) {

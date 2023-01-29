@@ -1,16 +1,8 @@
-// Dart imports:
-import 'dart:io';
-
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/admob_constant.dart';
 import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/screen/detail/detail_screen.dart';
@@ -23,34 +15,11 @@ class CalendarScreenController extends GetxController {
   Rxn<DateTime?> daySelected = Rxn<DateTime?>();
   final calendarList = <Money>[].obs;
   List<int> event = [];
-  var adContainer = Container().obs;
-  final myBanner = BannerAd(
-    adUnitId: Platform.isAndroid ? AdmobConstant.android : AdmobConstant.iOS,
-    size: AdSize.banner,
-    request: const AdRequest(),
-    listener: BannerAdListener(
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-      },
-    ),
-  );
 
   @override
   void onInit() {
     super.onInit();
     now.value = DateTime.now();
-    loadAdmob();
-  }
-
-  void loadAdmob() {
-    myBanner.load();
-    final adWidget = AdWidget(ad: myBanner);
-    adContainer.value = Container(
-      alignment: Alignment.center,
-      width: MediaQuery.of(Get.context!).size.width,
-      height: myBanner.size.height.toDouble(),
-      child: adWidget,
-    );
   }
 
   List<int> getEvent(DateTime date) {

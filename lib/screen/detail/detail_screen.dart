@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
+import 'package:money_records_app/admob/admob.dart';
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/constants/style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
-import 'package:money_records_app/screen/detail/detail_screen_controller.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({
@@ -28,7 +28,6 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(DetailScreenController());
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -99,7 +98,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const DetailDividerItem(),
             const Spacer(),
-            controller.adContainer.value,
+            GoogleAdInfo().myBannerAd,
           ],
         ),
       ),
