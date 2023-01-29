@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
 
 class AppBarItem extends StatelessWidget with PreferredSizeWidget {
   const AppBarItem({
@@ -21,10 +22,7 @@ class AppBarItem extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       title: Text(
         title,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+        style: StyleConstant.appbarTextStyle,
       ),
     );
   }

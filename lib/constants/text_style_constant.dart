@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:money_records_app/constants/color_constant.dart';
 
 class StyleConstant {
+  static TextStyle appbarTextStyle = TextStyle(
+    color: ColorConstant.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle homeStoreButton = TextStyle(
     fontWeight: FontWeight.bold,
     color: ColorConstant.white,
