@@ -29,29 +29,32 @@ class CalendarScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            width: context.screenWidth,
-            height: 350,
-            child: Obx(
-              () => TableCalendar(
-                locale: 'ja_JP',
-                eventLoader: (date) => controller.getEvent(date),
-                focusedDay: controller.now.value!,
-                firstDay: DateTime.utc(2022, 12, 1),
-                lastDay: DateTime.utc(2100, 12, 31),
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: SizedBox(
+              width: context.screenWidth,
+              height: 350,
+              child: Obx(
+                () => TableCalendar(
+                  locale: 'ja_JP',
+                  eventLoader: (date) => controller.getEvent(date),
+                  focusedDay: controller.now.value!,
+                  firstDay: DateTime.utc(2022, 12, 1),
+                  lastDay: DateTime.utc(2100, 12, 31),
+                  headerStyle: const HeaderStyle(
+                    formatButtonVisible: false,
+                  ),
+                  selectedDayPredicate: (day) {
+                    return isSameDay(controller.daySelected.value, day);
+                  },
+                  onDaySelected: (selected, focused) {
+                    if (!isSameDay(controller.daySelected.value, selected)) {
+                      controller.daySelected.value = selected;
+                      controller.now.value = focused;
+                      controller.loadSelectDate(selected);
+                    }
+                  },
                 ),
-                selectedDayPredicate: (day) {
-                  return isSameDay(controller.daySelected.value, day);
-                },
-                onDaySelected: (selected, focused) {
-                  if (!isSameDay(controller.daySelected.value, selected)) {
-                    controller.daySelected.value = selected;
-                    controller.now.value = focused;
-                    controller.loadSelectDate(selected);
-                  }
-                },
               ),
             ),
           ),
@@ -117,6 +120,7 @@ class CalendarScreen extends StatelessWidget {
               ),
             ),
           ),
+          controller.adContainer.value,
         ],
       ),
     );
