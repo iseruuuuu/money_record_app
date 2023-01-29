@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:money_records_app/constants/color_constant.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 
@@ -75,10 +76,7 @@ class CalendarScreen extends StatelessWidget {
                             width: context.screenWidth / 2,
                             child: Text(
                               event.categoryName,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: StyleConstant.blackTextStyle,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -90,10 +88,7 @@ class CalendarScreen extends StatelessWidget {
                                 width: context.screenWidth - 300,
                                 child: Text(
                                   '${event.buyPrice}円',
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: StyleConstant.blackTextStyle,
                                   textAlign: TextAlign.end,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -102,11 +97,7 @@ class CalendarScreen extends StatelessWidget {
                                 width: context.screenWidth - 300,
                                 child: Text(
                                   '${event.discountPrice}円',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorConstant.grey,
-                                  ),
+                                  style: StyleConstant.greyTextStyle,
                                   textAlign: TextAlign.end,
                                   overflow: TextOverflow.ellipsis,
                                 ),

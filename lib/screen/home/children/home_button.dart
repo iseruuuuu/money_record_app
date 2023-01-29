@@ -1,6 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:money_records_app/constants/text_style_constant.dart';
+import 'package:money_records_app/extension/deviceSize.dart';
+
 class HomeButton extends StatelessWidget {
   const HomeButton({
     Key? key,
@@ -12,27 +16,14 @@ class HomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width - 100,
+      width: context.screenWidth - 100,
       height: 50,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          foregroundColor: Colors.white,
-          backgroundColor: const Color(0xFF4A67AD),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-        ),
+        style: StyleConstant.homeButtonStyle,
         onPressed: onPressed,
-        child: const Text(
+        child: Text(
           '保存',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+          style: StyleConstant.homeStoreButton,
         ),
       ),
     );

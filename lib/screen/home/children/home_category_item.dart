@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:money_records_app/constants/text_style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 
 class HomeCategoryItem extends StatelessWidget {
@@ -20,29 +21,18 @@ class HomeCategoryItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListTile(
         onTap: onTap,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Color(0xFF4A67AD)),
-          borderRadius: BorderRadius.circular(5),
-        ),
+        shape: StyleConstant.homeBorder,
         tileColor: Colors.white,
-        leading: const Text(
+        leading: Text(
           'カテゴリー',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
+          style: StyleConstant.homeTextStyle,
           maxLines: 1,
         ),
         trailing: SizedBox(
           width: context.screenWidth - 160,
           child: Text(
             categoryName,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 20,
-            ),
+            style: StyleConstant.alreadyTextStyle,
             textAlign: TextAlign.end,
             overflow: TextOverflow.ellipsis,
           ),

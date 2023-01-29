@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:money_records_app/constants/color_constant.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/screen/setting/setting_screen_controller.dart';
 
 class SettingScreen extends StatelessWidget {

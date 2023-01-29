@@ -1,6 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
+import 'package:money_records_app/extension/deviceSize.dart';
 
 class GraphListTile extends StatelessWidget {
   const GraphListTile({
@@ -50,13 +54,10 @@ class GraphListTile extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               SizedBox(
-                width: MediaQuery.of(context).size.width - 250,
+                width: context.screenWidth - 250,
                 child: Text(
                   categoryName,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: StyleConstant.blackTextStyle,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -67,26 +68,19 @@ class GraphListTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width - 300,
+                width: context.screenWidth - 300,
                 child: Text(
                   '$buyPrice円',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: StyleConstant.blackTextStyle,
                   textAlign: TextAlign.end,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width - 300,
+                width: context.screenWidth - 300,
                 child: Text(
                   '$discountPrice円',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: ColorConstant.grey,
-                  ),
+                  style: StyleConstant.greyTextStyle,
                   textAlign: TextAlign.end,
                   overflow: TextOverflow.ellipsis,
                 ),

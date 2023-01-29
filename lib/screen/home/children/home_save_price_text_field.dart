@@ -2,6 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Project imports:
+import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
+
 class HomeSavePriceTextField extends StatelessWidget {
   const HomeSavePriceTextField({
     Key? key,
@@ -13,28 +17,19 @@ class HomeSavePriceTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 40,
-        bottom: 20,
-        right: 20,
-        left: 20,
-      ),
+      padding: const EdgeInsets.only(top: 40, bottom: 20, right: 20, left: 20),
       child: TextField(
         onChanged: onChanged,
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xFF4A67AD),
+              color: ColorConstant.appBarColor,
             ),
           ),
           labelText: '節約できた値段',
-          labelStyle: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
+          labelStyle: StyleConstant.homeTextStyle,
           filled: true,
           fillColor: Colors.white,
           border: InputBorder.none,

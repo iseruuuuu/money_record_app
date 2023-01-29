@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
-import 'package:money_records_app/constants/color_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/model/chart_data.dart';
 import 'package:money_records_app/screen/graph/children/graph_empty_screen.dart';

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/category/category_screen_controller.dart';
 
@@ -82,10 +83,7 @@ class CategoryScreen extends StatelessWidget {
                                         width: context.screenWidth - 100,
                                         child: Text(
                                           categoryList[index],
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                          ),
+                                          style: StyleConstant.blackTextStyle,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),

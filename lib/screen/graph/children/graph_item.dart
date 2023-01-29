@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:money_records_app/constants/color_constant.dart';
+import 'package:money_records_app/constants/text_style_constant.dart';
 
 class GraphItem extends StatelessWidget {
   const GraphItem({
@@ -22,25 +25,14 @@ class GraphItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: ColorConstant.white,
         border: Border(
-          bottom: BorderSide(
-            width: 2,
-            color: ColorConstant.appBarColor,
-          ),
-          top: isFirst
-              ? BorderSide(
-                  width: 2,
-                  color: ColorConstant.appBarColor,
-                )
-              : BorderSide.none,
+          bottom: StyleConstant.graphBorder,
+          top: isFirst ? StyleConstant.graphBorder : BorderSide.none,
         ),
       ),
       child: ListTile(
         leading: Text(
           leading,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: StyleConstant.alreadyTextStyle,
         ),
         trailing: Text(
           '$trailing円',

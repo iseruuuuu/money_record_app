@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
-import 'package:money_records_app/constants/admob_constant.dart';
 
 // Project imports:
 import 'package:money_records_app/constants/admob_constant.dart';
