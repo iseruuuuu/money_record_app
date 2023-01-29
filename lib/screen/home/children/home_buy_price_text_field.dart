@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/text_style_constant.dart';
+import 'package:money_records_app/constants/style_constant.dart';
 
 class HomeBuyPriceTextField extends StatelessWidget {
   const HomeBuyPriceTextField({

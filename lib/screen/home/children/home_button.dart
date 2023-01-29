@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:money_records_app/constants/text_style_constant.dart';
+import 'package:money_records_app/constants/style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 
 class HomeButton extends StatelessWidget {

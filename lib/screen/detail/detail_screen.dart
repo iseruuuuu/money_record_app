@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
 import 'package:money_records_app/constants/color_constant.dart';
-import 'package:money_records_app/constants/text_style_constant.dart';
+import 'package:money_records_app/constants/style_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
 import 'package:money_records_app/screen/detail/detail_screen_controller.dart';
