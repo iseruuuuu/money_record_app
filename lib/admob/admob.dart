@@ -17,9 +17,8 @@ class GoogleAdInfo {
   }
 
   static String get appId {
-    //static修飾子：インスタンスごとでなくクラス共通で取得できる変数
     if (Platform.isAndroid) {
-      return AdmobConstant.android; //アプリID
+      return AdmobConstant.android;
     } else if (Platform.isIOS) {
       return AdmobConstant.iOS;
     } else {
@@ -65,9 +64,6 @@ class GoogleAdInfo {
     );
   }
 
-//<---------------InterstitialAd - インタースティシャル広告----------------->
-  /* ポップアップとして全画面を占有し、閉じるボタンを押さない限り表示され続ける広告 */
-
   InterstitialAd? myInterstitialAd;
   int numInterstitialLoadAttempts = 0;
   int maxFailedLoadAttempts = 3;
@@ -83,7 +79,6 @@ class GoogleAdInfo {
   }
 
   createMmyInterstitialAd() {
-    /* インタースティシャル広告を作成 */
     var interstitialAd = InterstitialAd.load(
       adUnitId: interstitialAdUnitId,
       request: const AdRequest(),
@@ -104,8 +99,6 @@ class GoogleAdInfo {
   }
 
   showLoadingAdDialog() async {
-    /* インタースティシャル広告を表示する前に飛び出す1秒間のローディングダイアログ */
-    /* Googleの推奨として、ユーザーの誤操作防止のためにあえて広告前にローディング画面出す */
     Get.defaultDialog(
       title: "",
       content: Column(
@@ -116,12 +109,11 @@ class GoogleAdInfo {
         ],
       ),
     );
-    await Future.delayed(const Duration(seconds: 1)); //ダイアログを1秒間表示
-    if (Get.isDialogOpen!) Get.back(); //ダイアログを閉じる
+    await Future.delayed(const Duration(seconds: 1));
+    if (Get.isDialogOpen!) Get.back();
   }
 
   showMyInterstitialAd() async {
-    /* インタースティシャル広告を表示する関数 */
     if (myInterstitialAd == null) {
       return;
     }
