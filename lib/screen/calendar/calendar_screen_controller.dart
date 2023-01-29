@@ -3,21 +3,37 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // Project imports:
+import 'package:money_records_app/database/db_provider.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/screen/detail/detail_screen.dart';
-import '../../database/db_provider.dart';
 
 class CalendarScreenController extends GetxController {
+  CalendarScreenController({required this.data});
+
+  final List<DateTime> data;
   Rxn<DateTime> now = Rxn<DateTime>();
   Rxn<DateTime?> daySelected = Rxn<DateTime?>();
   final calendarList = <Todo>[].obs;
-
-  List<Todo> get calendarLists => calendarList;
+  List<int> event = [];
 
   @override
   void onInit() {
     super.onInit();
     now.value = DateTime.now();
+  }
+
+  List<int> getEvent(DateTime date) {
+    return loadEvent(date);
+  }
+
+  List<int> loadEvent(DateTime date) {
+    event.clear();
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].day == date.day && data[i].month == date.month) {
+        event.add(0);
+      }
+    }
+    return event;
   }
 
   void loadSelectDate(DateTime selectDate) {

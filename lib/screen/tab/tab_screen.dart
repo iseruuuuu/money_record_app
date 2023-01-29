@@ -23,7 +23,7 @@ class TabScreen extends StatelessWidget {
         body: [
           const HomeScreen(),
           const GraphScreen(),
-          const CalendarScreen(),
+          CalendarScreen(data: controller.data),
           const SettingScreen(),
         ][controller.selectedIndex.value],
         bottomNavigationBar: DecoratedBox(

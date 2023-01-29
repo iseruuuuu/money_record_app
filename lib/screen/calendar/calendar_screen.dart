@@ -11,11 +11,16 @@ import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/calendar/calendar_screen_controller.dart';
 
 class CalendarScreen extends StatelessWidget {
-  const CalendarScreen({Key? key}) : super(key: key);
+  const CalendarScreen({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
+  final List<DateTime> data;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CalendarScreenController());
+    final controller = Get.put(CalendarScreenController(data: data));
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBarItem(
@@ -30,6 +35,7 @@ class CalendarScreen extends StatelessWidget {
             child: Obx(
               () => TableCalendar(
                 locale: 'ja_JP',
+                eventLoader: (date) => controller.getEvent(date),
                 focusedDay: controller.now.value!,
                 firstDay: DateTime.utc(2022, 12, 1),
                 lastDay: DateTime.utc(2100, 12, 31),
