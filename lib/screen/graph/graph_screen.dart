@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
@@ -20,9 +21,9 @@ class GraphScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(GraphScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7),
+      backgroundColor: ColorConstant.backgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF4A67AD),
+        backgroundColor: ColorConstant.appBarColor,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +58,7 @@ class GraphScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: context.screenWidth,
-                    color: const Color(0xFFF2F2F7),
+                    color: ColorConstant.backgroundColor,
                     height: 230,
                     child: Obx(
                       () => SfCircularChart(
@@ -78,7 +79,7 @@ class GraphScreen extends StatelessWidget {
                     () => GraphItem(
                       leading: '合計',
                       trailing: controller.amountBuyPrice.value.toString(),
-                      color: Colors.black,
+                      color: ColorConstant.black,
                       isFirst: true,
                     ),
                   ),
@@ -86,7 +87,7 @@ class GraphScreen extends StatelessWidget {
                     () => GraphItem(
                       leading: '節約できた金額',
                       trailing: controller.amountSavePrice.value.toString(),
-                      color: Colors.grey,
+                      color: ColorConstant.grey,
                       isFirst: false,
                     ),
                   ),

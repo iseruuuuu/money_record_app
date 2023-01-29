@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 
 class AppBarItem extends StatelessWidget with PreferredSizeWidget {
   const AppBarItem({
@@ -14,7 +15,7 @@ class AppBarItem extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFF4A67AD),
+      backgroundColor: ColorConstant.appBarColor,
       elevation: 0,
       title: Text(
         title,

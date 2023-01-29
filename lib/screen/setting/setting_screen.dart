@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 // Project imports:
@@ -17,7 +18,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SettingScreenController());
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7),
+      backgroundColor: ColorConstant.backgroundColor,
       appBar: AppBarItem(
         appBar: AppBar(),
         title: '設定',
@@ -26,57 +27,58 @@ class SettingScreen extends StatelessWidget {
         children: [
           Expanded(
             child: SettingsList(
-              lightTheme: const SettingsThemeData(
-                settingsListBackground: Color(0xFFF2F2F7),
-                settingsSectionBackground: Colors.white,
+              lightTheme: SettingsThemeData(
+                settingsListBackground: ColorConstant.settingsListBackground,
+                settingsSectionBackground:
+                    ColorConstant.settingsSectionBackground,
               ),
               sections: [
                 SettingsSection(
                   tiles: [
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.star,
-                        color: Colors.yellow,
+                        color: ColorConstant.yellow,
                       ),
                       title: const Text('レビューを書く'),
                       onPressed: (context) => controller.onTapReview(),
                     ),
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.mail,
-                        color: Colors.lightBlue,
+                        color: ColorConstant.lightBlue,
                       ),
                       title: const Text('お問い合わせ'),
                       onPressed: (context) => controller.onTapMail(),
                     ),
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         AntDesign.twitter,
-                        color: Colors.blue,
+                        color: ColorConstant.blue,
                       ),
                       title: const Text('開発者'),
                       onPressed: (context) => controller.onTapTwitter(),
                     ),
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.local_police,
-                        color: Colors.grey,
+                        color: ColorConstant.grey,
                       ),
                       title: const Text('ライセンス'),
                       onPressed: (context) => controller.onTapLicense(),
                     ),
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         MaterialCommunityIcons.github,
-                        color: Colors.black,
+                        color: ColorConstant.black,
                       ),
                       title: const Text('Github'),
                       onPressed: (context) => controller.onTapGithub(),
                     ),
                     SettingsTile.navigation(
-                      leading: const Icon(
+                      leading: Icon(
                         AntDesign.sharealt,
-                        color: Colors.black,
+                        color: ColorConstant.black,
                       ),
                       title: const Text('友達に教える'),
                       onPressed: (context) => controller.onTapShare(),

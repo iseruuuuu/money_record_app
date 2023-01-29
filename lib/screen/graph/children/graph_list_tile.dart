@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 
 class GraphListTile extends StatelessWidget {
   const GraphListTile({
@@ -27,12 +28,12 @@ class GraphListTile extends StatelessWidget {
       key: Key(cellKey),
       background: Container(
         alignment: Alignment.centerRight,
-        color: Colors.red,
-        child: const Padding(
-          padding: EdgeInsets.only(right: 50),
+        color: ColorConstant.red,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 50),
           child: Icon(
             Icons.delete,
-            color: Colors.white,
+            color: ColorConstant.white,
           ),
         ),
       ),
@@ -81,10 +82,10 @@ class GraphListTile extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 300,
                 child: Text(
                   '$discountPrice円',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey,
+                    color: ColorConstant.grey,
                   ),
                   textAlign: TextAlign.end,
                   overflow: TextOverflow.ellipsis,

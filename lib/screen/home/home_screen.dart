@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/screen/home/children/home_button.dart';
 import 'package:money_records_app/screen/home/children/home_buy_price_text_field.dart';
 import 'package:money_records_app/screen/home/children/home_category_item.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeScreenController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFFF2F2F7),
+      backgroundColor: ColorConstant.backgroundColor,
       appBar: AppBarItem(
         appBar: AppBar(),
         title: '収支記録',

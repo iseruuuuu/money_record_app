@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // Project imports:
@@ -22,7 +23,7 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CalendarScreenController(data: data));
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7),
+      backgroundColor: ColorConstant.backgroundColor,
       appBar: AppBarItem(
         appBar: AppBar(),
         title: 'カレンダー',
@@ -101,10 +102,10 @@ class CalendarScreen extends StatelessWidget {
                                 width: context.screenWidth - 300,
                                 child: Text(
                                   '${event.discountPrice}円',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
+                                    color: ColorConstant.grey,
                                   ),
                                   textAlign: TextAlign.end,
                                   overflow: TextOverflow.ellipsis,

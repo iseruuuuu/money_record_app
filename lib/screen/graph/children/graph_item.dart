@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 
 class GraphItem extends StatelessWidget {
   const GraphItem({
@@ -19,11 +20,17 @@ class GraphItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConstant.white,
         border: Border(
-          bottom: const BorderSide(width: 2, color: Color(0xFF4A67AD)),
+          bottom: BorderSide(
+            width: 2,
+            color: ColorConstant.appBarColor,
+          ),
           top: isFirst
-              ? const BorderSide(width: 2, color: Color(0xFF4A67AD))
+              ? BorderSide(
+                  width: 2,
+                  color: ColorConstant.appBarColor,
+                )
               : BorderSide.none,
         ),
       ),

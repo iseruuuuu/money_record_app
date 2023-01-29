@@ -1,14 +1,15 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 
 class DetailDividerItem extends StatelessWidget {
   const DetailDividerItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Divider(
+    return Divider(
       thickness: 3,
-      color: Color(0xFF4A67AD),
+      color: ColorConstant.appBarColor,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 
 class GraphEmptyScreen extends StatelessWidget {
   const GraphEmptyScreen({Key? key}) : super(key: key);
@@ -39,10 +40,10 @@ class GraphEmptyScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(),
-          const Text(
+          Text(
             '入力画面で追加をしてください',
             style: TextStyle(
-              color: Colors.black,
+              color: ColorConstant.black,
               fontWeight: FontWeight.bold,
               fontSize: 23,
             ),

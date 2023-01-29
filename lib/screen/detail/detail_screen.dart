@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/detail/children/detail_divider_item.dart';
 import 'package:money_records_app/screen/detail/detail_screen_controller.dart';
@@ -30,7 +31,7 @@ class DetailScreen extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF2F2F7),
+        backgroundColor: ColorConstant.backgroundColor,
         appBar: AppBarItem(
           appBar: AppBar(),
           title: '',
@@ -71,8 +72,8 @@ class DetailScreen extends StatelessWidget {
                 width: context.screenWidth - 200,
                 child: Text(
                   '$discountPrice円',
-                  style: const TextStyle(
-                    color: Colors.grey,
+                  style: TextStyle(
+                    color: ColorConstant.grey,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),

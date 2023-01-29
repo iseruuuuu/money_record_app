@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:money_records_app/components/app_bar_item.dart';
+import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/screen/category/category_screen_controller.dart';
 
@@ -18,7 +19,7 @@ class CategoryScreen extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF2F2F7),
+        backgroundColor: ColorConstant.backgroundColor,
         appBar: AppBarItem(
           appBar: AppBar(),
           title: 'カテゴリー編集',
@@ -71,9 +72,9 @@ class CategoryScreen extends StatelessWidget {
                                       IconButton(
                                         onPressed: () =>
                                             controller.deleteCategory(index),
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.delete,
-                                          color: Colors.red,
+                                          color: ColorConstant.red,
                                           size: 30,
                                         ),
                                       ),
