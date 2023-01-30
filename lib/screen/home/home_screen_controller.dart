@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
 // Project imports:
+import 'package:money_records_app/admob/admob_interstitial.dart';
 import 'package:money_records_app/database/db_bloc.dart';
 import 'package:money_records_app/model/money.dart';
 import 'package:money_records_app/preference/shared_preference.dart';
@@ -23,6 +25,8 @@ class HomeScreenController extends GetxController {
   RxList<String> categoryList = [''].obs;
   RxInt colorCode = 0.obs;
 
+  AdmobInterstitial adInterstitial = AdmobInterstitial();
+
   @override
   void onInit() {
     super.onInit();
@@ -30,6 +34,7 @@ class HomeScreenController extends GetxController {
     final now = DateTime.now();
     createdDate.value = DateFormat('yyyy年M月d日').format(now);
     createdDates = now;
+    adInterstitial.createAd();
   }
 
   Future<void> loadAppTracking() async {
@@ -106,7 +111,10 @@ class HomeScreenController extends GetxController {
       panaraDialogType:
           isError ? PanaraDialogType.error : PanaraDialogType.success,
       barrierDismissible: false,
-      onTapDismiss: Get.back,
+      onTapDismiss: () async {
+        Get.back();
+        adInterstitial.showAd();
+      },
     );
   }
 }
