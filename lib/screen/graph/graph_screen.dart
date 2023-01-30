@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 // Project imports:
-import 'package:money_records_app/admob/admob.dart';
+import 'package:money_records_app/admob/admob_banner.dart';
 import 'package:money_records_app/constants/color_constant.dart';
 import 'package:money_records_app/extension/deviceSize.dart';
 import 'package:money_records_app/model/chart_data.dart';
@@ -112,7 +112,7 @@ class GraphScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  GoogleAdInfo().myBannerAd,
+                  AdmobBanner().myBannerAd,
                 ],
               ),
       ),
