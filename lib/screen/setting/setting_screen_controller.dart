@@ -78,6 +78,8 @@ class SettingScreenController extends GetxController {
   }
 
   void onTapShare() {
-    Share.share('シェアをするよ');
+    Share.share(
+      'https://apps.apple.com/jp/app/%E5%AE%B6%E8%A8%88%E7%B0%BF-%E7%AF%80%E7%B4%84%E8%A8%98%E9%8C%B2/id1660345986',
+    );
   }
 }
