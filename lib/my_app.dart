@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'money_records_app',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      darkTheme: ThemeData(brightness: Brightness.light),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
